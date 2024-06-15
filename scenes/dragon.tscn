@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://brr6c764i5con"]
+
+[ext_resource type="Script" path="res://scripts/dragon.gd" id="1_rp6r8"]
+[ext_resource type="Texture2D" uid="uid://dpvv6vbq7npq8" path="res://assets/art/dragon_sprite.png" id="1_y81sn"]
+[ext_resource type="PackedScene" uid="uid://dc7820fbps1di" path="res://scenes/fireball.tscn" id="2_26cet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37ste"]
+size = Vector2(32, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gekxm"]
+radius = 640.0
+
+[node name="Dragon" type="CharacterBody2D"]
+script = ExtResource("1_rp6r8")
+fireball = ExtResource("2_26cet")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_37ste")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_y81sn")
+
+[node name="FireballContainer" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gekxm")
+
+[node name="ShootTimer" type="Timer" parent="."]
+process_callback = 0
+autostart = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

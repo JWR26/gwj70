@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://cnwcws5tnwb13"]
+
+[ext_resource type="Script" path="res://scripts/Label.gd" id="1_0n1k8"]
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_dlhsa"]
+[ext_resource type="Script" path="res://scripts/dialgoue_overlay.gd" id="1_r3n0i"]
+[ext_resource type="PackedScene" uid="uid://brr6c764i5con" path="res://scenes/dragon.tscn" id="2_5d7dx"]
+[ext_resource type="PackedScene" uid="uid://n17ptbcg4vyb" path="res://scenes/player.tscn" id="3_1skhm"]
+[ext_resource type="PackedScene" uid="uid://pwh6154vj0o5" path="res://scenes/villager.tscn" id="3_wna6q"]
+[ext_resource type="Script" path="res://scripts/game_camera.gd" id="5_o0qlm"]
+[ext_resource type="Texture2D" uid="uid://m8lqhdhsq1ut" path="res://assets/art/ground.png" id="6_i5as5"]
+[ext_resource type="Texture2D" uid="uid://dwa3k8520pen2" path="res://assets/art/house.png" id="7_hqt1q"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_dlhsa")
+dragon_scene = ExtResource("2_5d7dx")
+player_scene = ExtResource("3_1skhm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_r3n0i")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "begin the story...."
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_0n1k8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("5_o0qlm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("6_i5as5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(826, 375)
+texture = ExtResource("7_hqt1q")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(1006, 218)
+texture = ExtResource("7_hqt1q")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(1053, 438)
+texture = ExtResource("7_hqt1q")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+position = Vector2(888, 548)
+texture = ExtResource("7_hqt1q")
+
+[node name="Villager" parent="." instance=ExtResource("3_wna6q")]
+position = Vector2(880, 264)
+
+[node name="Villager2" parent="." instance=ExtResource("3_wna6q")]
+position = Vector2(1144, 280)
+
+[node name="Villager3" parent="." instance=ExtResource("3_wna6q")]
+position = Vector2(1016, 536)
+
+[node name="Villager4" parent="." instance=ExtResource("3_wna6q")]
+position = Vector2(792, 480)

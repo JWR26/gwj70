@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://pwh6154vj0o5"]
+
+[ext_resource type="Texture2D" uid="uid://b1ws3ft1wqfue" path="res://assets/art/villager_sprite.png" id="1_7r56l"]
+[ext_resource type="Script" path="res://scripts/villager.gd" id="1_pagdl"]
+[ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_ow4a7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2q1p"]
+size = Vector2(16, 24)
+
+[node name="Villager" type="CharacterBody2D"]
+script = ExtResource("1_pagdl")
+arrow = ExtResource("2_ow4a7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y2q1p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7r56l")
