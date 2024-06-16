@@ -9,9 +9,11 @@
 size = Vector2(16, 24)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("user_input")]
+motion_mode = 1
 script = ExtResource("1_480yi")
 user_input = NodePath("UserInputComponent")
 arrow = ExtResource("2_2kc2m")
+health = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lgdie")

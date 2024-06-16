@@ -11,8 +11,10 @@ size = Vector2(32, 40)
 radius = 640.0
 
 [node name="Dragon" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_rp6r8")
 fireball = ExtResource("2_26cet")
+health = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_37ste")
@@ -23,6 +25,7 @@ texture = ExtResource("1_y81sn")
 [node name="FireballContainer" type="Node" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_gekxm")

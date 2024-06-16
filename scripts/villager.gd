@@ -1,10 +1,8 @@
 class_name Villager
 
-extends CharacterBody2D
+extends Entity
 
 @export var arrow: PackedScene
 
-
-
-func hit() -> void:
+func entity_died() -> void:
 	queue_free()

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Label.gd" id="1_0n1k8"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_dlhsa"]
-[ext_resource type="Script" path="res://scripts/dialgoue_overlay.gd" id="1_r3n0i"]
+[ext_resource type="Script" path="res://scripts/dialogue_overlay.gd" id="1_r3n0i"]
 [ext_resource type="PackedScene" uid="uid://brr6c764i5con" path="res://scenes/dragon.tscn" id="2_5d7dx"]
 [ext_resource type="PackedScene" uid="uid://n17ptbcg4vyb" path="res://scenes/player.tscn" id="3_1skhm"]
 [ext_resource type="PackedScene" uid="uid://pwh6154vj0o5" path="res://scenes/villager.tscn" id="3_wna6q"]

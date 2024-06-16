@@ -1,6 +1,6 @@
 class_name Player
 
-extends CharacterBody2D
+extends Entity
 
 signal player_died
 
@@ -15,7 +15,7 @@ func _input(event: InputEvent) -> void:
 		shoot()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = user_input.get_movement() * SPEED
 	move_and_slide()
 
@@ -26,6 +26,6 @@ func shoot() -> void:
 	$Container.add_child(a)
 	a.owner = self
 
-func hit() -> void:
+func entity_died() -> void:
 	player_died.emit()
 	queue_free()
