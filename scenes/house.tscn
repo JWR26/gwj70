@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3d5vtiepdt02"]
+
+[ext_resource type="Script" path="res://scripts/house.gd" id="1_sp76u"]
+[ext_resource type="Texture2D" uid="uid://dwa3k8520pen2" path="res://assets/art/house.png" id="1_upnlf"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="2_wu3q8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g18os"]
+size = Vector2(64, 48)
+
+[node name="House" type="StaticBody2D"]
+script = ExtResource("1_sp76u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_upnlf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_g18os")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_wu3q8")
+hp = 1
+max_hp = 1

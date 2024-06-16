@@ -1,19 +1,42 @@
-[gd_scene load_steps=5 format=3 uid="uid://pwh6154vj0o5"]
+[gd_scene load_steps=7 format=3 uid="uid://pwh6154vj0o5"]
 
 [ext_resource type="Texture2D" uid="uid://b1ws3ft1wqfue" path="res://assets/art/villager_sprite.png" id="1_7r56l"]
 [ext_resource type="Script" path="res://scripts/villager.gd" id="1_pagdl"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_ow4a7"]
+[ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="4_tpmep"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="5_78rkw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2q1p"]
 size = Vector2(16, 24)
 
-[node name="Villager" type="CharacterBody2D"]
+[node name="Villager" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_pagdl")
 arrow = ExtResource("2_ow4a7")
-health = 1
+health_component = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_y2q1p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7r56l")
+
+[node name="HealthBar" parent="." instance=ExtResource("4_tpmep")]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -17.0
+offset_top = -31.0
+offset_right = 17.0
+offset_bottom = -7.0
+grow_vertical = 0
+initial_health = 2
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_78rkw")
+hp = 2
+max_hp = 2
+
+[connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
+[connection signal="hp_updated" from="HealthComponent" to="HealthBar" method="update_hp"]
+[connection signal="max_hp_updated" from="HealthComponent" to="HealthBar" method="configure_max_health"]

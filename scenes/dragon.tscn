@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://brr6c764i5con"]
+[gd_scene load_steps=8 format=3 uid="uid://brr6c764i5con"]
 
 [ext_resource type="Script" path="res://scripts/dragon.gd" id="1_rp6r8"]
 [ext_resource type="Texture2D" uid="uid://dpvv6vbq7npq8" path="res://assets/art/dragon_sprite.png" id="1_y81sn"]
 [ext_resource type="PackedScene" uid="uid://dc7820fbps1di" path="res://scenes/fireball.tscn" id="2_26cet"]
+[ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="4_euxno"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="5_dix0n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37ste"]
 size = Vector2(32, 40)
@@ -10,11 +12,11 @@ size = Vector2(32, 40)
 [sub_resource type="CircleShape2D" id="CircleShape2D_gekxm"]
 radius = 640.0
 
-[node name="Dragon" type="CharacterBody2D"]
+[node name="Dragon" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
 motion_mode = 1
 script = ExtResource("1_rp6r8")
 fireball = ExtResource("2_26cet")
-health = 5
+health_component = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_37ste")
@@ -34,6 +36,22 @@ shape = SubResource("CircleShape2D_gekxm")
 process_callback = 0
 autostart = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("4_euxno")]
+offset_left = 128.0
+offset_right = -128.0
+offset_bottom = -336.0
+initial_health = 20
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("5_dix0n")
+hp = 20
+max_hp = 20
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
+[connection signal="hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="update_hp"]
+[connection signal="max_hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="configure_max_health"]

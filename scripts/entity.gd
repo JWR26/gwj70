@@ -2,12 +2,11 @@ extends CharacterBody2D
 
 class_name Entity
 
-@export var health: int
+@export var health_component: HealthComponent
+
 
 func take_damage(damage: int) -> void:
-	health -= damage
-	if health <= 0:
-		entity_died()
+	health_component.take_damage(damage)
 
 func entity_died() -> void:
-	pass
+	queue_free()

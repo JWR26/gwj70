@@ -1,19 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://n17ptbcg4vyb"]
+[gd_scene load_steps=8 format=3 uid="uid://n17ptbcg4vyb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_480yi"]
 [ext_resource type="Texture2D" uid="uid://dknlrr67pfxr1" path="res://assets/art/player_sprite.png" id="1_xjje4"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_2kc2m"]
 [ext_resource type="Script" path="res://scripts/user_input.gd" id="3_7gif4"]
+[ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="5_ali4m"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="6_jtxq0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgdie"]
 size = Vector2(16, 24)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("user_input")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("user_input", "health_component")]
 motion_mode = 1
 script = ExtResource("1_480yi")
 user_input = NodePath("UserInputComponent")
 arrow = ExtResource("2_2kc2m")
-health = 5
+health_component = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lgdie")
@@ -25,3 +27,24 @@ texture = ExtResource("1_xjje4")
 script = ExtResource("3_7gif4")
 
 [node name="Container" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" parent="CanvasLayer" instance=ExtResource("5_ali4m")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_right = 0.0
+offset_top = -32.0
+offset_right = 128.0
+grow_horizontal = 1
+grow_vertical = 0
+initial_health = 4
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("6_jtxq0")
+hp = 4
+max_hp = 4
+
+[connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
+[connection signal="hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="update_hp"]
+[connection signal="max_hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="configure_max_health"]

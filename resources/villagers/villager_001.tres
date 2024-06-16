@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://cwoytfbog7k2g"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_rdi8i"]
+
+[resource]
+script = ExtResource("1_rdi8i")
+name = ""
+age = 0
+post_combat_dialogue = ""
+end_game_dialogue = ""
+death_description = ""
+eulogy = ""

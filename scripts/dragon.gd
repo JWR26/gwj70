@@ -4,7 +4,6 @@ extends Entity
 
 const SPEED: float = 64.0
 
-
 signal dragon_killed
 
 var list: Array[Entity]
@@ -37,7 +36,7 @@ func shoot_fireball(at: Vector2) -> void:
 
 func entity_died() -> void:
 	dragon_killed.emit()
-	queue_free()
+	super.entity_died()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

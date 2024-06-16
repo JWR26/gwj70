@@ -28,4 +28,4 @@ func shoot() -> void:
 
 func entity_died() -> void:
 	player_died.emit()
-	queue_free()
+	super.entity_died()

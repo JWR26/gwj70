@@ -28,9 +28,10 @@ func _input(event: InputEvent) -> void:
 
 
 func add_dragon() -> void:
-	dragon = dragon_scene.instantiate()
+	if not dragon:
+		dragon = dragon_scene.instantiate()
+		dragon.dragon_killed.connect(_on_dragon_killed)
 	dragon.set_position(Vector2(960, 384))
-	dragon.dragon_killed.connect(_on_dragon_killed)
 	add_child(dragon)
 
 

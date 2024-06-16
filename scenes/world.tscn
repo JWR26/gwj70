@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cnwcws5tnwb13"]
+[gd_scene load_steps=12 format=3 uid="uid://cnwcws5tnwb13"]
 
 [ext_resource type="Script" path="res://scripts/Label.gd" id="1_0n1k8"]
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_dlhsa"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://scripts/game_camera.gd" id="5_o0qlm"]
 [ext_resource type="Texture2D" uid="uid://m8lqhdhsq1ut" path="res://assets/art/ground.png" id="6_i5as5"]
 [ext_resource type="Texture2D" uid="uid://dwa3k8520pen2" path="res://assets/art/house.png" id="7_hqt1q"]
+[ext_resource type="PackedScene" uid="uid://c5xu11wkab8ps" path="res://scenes/fountain.tscn" id="10_ouhlh"]
+[ext_resource type="PackedScene" uid="uid://ctegvdsp3jfxe" path="res://scenes/well.tscn" id="11_hsn62"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_dlhsa")
@@ -62,3 +64,9 @@ position = Vector2(1016, 536)
 
 [node name="Villager4" parent="." instance=ExtResource("3_wna6q")]
 position = Vector2(792, 480)
+
+[node name="Fountain" parent="." instance=ExtResource("10_ouhlh")]
+position = Vector2(704, 256)
+
+[node name="Well" parent="." instance=ExtResource("11_hsn62")]
+position = Vector2(576, 488)
