@@ -3,16 +3,16 @@ extends Control
 @export var win_scene : PackedScene
 @export var lose_scene : PackedScene
 
-func _ready():
+func _ready() -> void:
 	InGameMenuController.scene_tree = get_tree()
 
-func _on_level_lost():
+func _on_level_lost() -> void:
 	InGameMenuController.open_menu(lose_scene, get_viewport())
 
-func _on_level_won():
+func _on_level_won() -> void:
 	$LevelLoader.advance_and_load_level()
 
-func _on_level_loader_level_loaded():
+func _on_level_loader_level_loaded() -> void:
 	await $LevelLoader.current_level.ready
 	if $LevelLoader.current_level.has_signal("level_won"):
 		$LevelLoader.current_level.level_won.connect(_on_level_won)
@@ -20,8 +20,8 @@ func _on_level_loader_level_loaded():
 		$LevelLoader.current_level.level_lost.connect(_on_level_lost)
 	$LoadingScreen.close()
 
-func _on_level_loader_levels_finished():
+func _on_level_loader_levels_finished() -> void:
 	InGameMenuController.open_menu(win_scene, get_viewport())
 
-func _on_level_loader_level_load_started():
+func _on_level_loader_level_load_started() -> void:
 	$LoadingScreen.reset()
