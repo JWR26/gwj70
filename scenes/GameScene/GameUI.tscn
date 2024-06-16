@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://up82pypyo4xa"]
+
+[ext_resource type="Script" path="res://scenes/GameScene/GameUI.gd" id="1_bhtwc"]
+[ext_resource type="PackedScene" uid="uid://dsxofb026pfd2" path="res://scenes/WinScreen/WinScreen.tscn" id="2_uopww"]
+[ext_resource type="PackedScene" uid="uid://cqs7flx0kouhb" path="res://scenes/LoseScreen/LoseScreen.tscn" id="3_ranki"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/PauseMenuController.gd" id="4_rq6er"]
+[ext_resource type="PackedScene" uid="uid://b6gljv8clmh0a" path="res://scenes/Menus/PauseMenu/PauseMenu.tscn" id="5_qlf15"]
+[ext_resource type="Script" path="res://addons/maaacks_game_template/extras/scripts/LevelLoader.gd" id="6_77krq"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/MusicPlayers/BackgroundMusicPlayer.tscn" id="7_i5tah"]
+[ext_resource type="PackedScene" uid="uid://cd0jbh4metflb" path="res://addons/maaacks_game_template/base/scenes/LoadingScreen/LoadingScreen.tscn" id="8_1jmyx"]
+[ext_resource type="Script" path="res://scenes/GameScene/ConfigurableSubViewport.gd" id="9_g2c4m"]
+[ext_resource type="Script" path="res://scenes/GameScene/InputDisplayLabel.gd" id="10_ksxkn"]
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bhtwc")
+win_scene = ExtResource("2_uopww")
+lose_scene = ExtResource("3_ranki")
+
+[node name="PauseMenuController" type="Node" parent="."]
+script = ExtResource("4_rq6er")
+pause_menu_packed = ExtResource("5_qlf15")
+
+[node name="LevelLoader" type="Node" parent="." node_paths=PackedStringArray("level_container")]
+script = ExtResource("6_77krq")
+level_container = NodePath("../ViewportContainer/ConfigurableSubViewport")
+files = Array[String](["res://scenes/world.tscn"])
+
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("7_i5tah")]
+bus = &"Master"
+
+[node name="LoadingScreen" parent="." instance=ExtResource("8_1jmyx")]
+visible = false
+
+[node name="ViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="ConfigurableSubViewport" type="SubViewport" parent="ViewportContainer"]
+handle_input_locally = false
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+script = ExtResource("9_g2c4m")
+
+[node name="InputDisplayLabel" type="Label" parent="."]
+process_mode = 4
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -44.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("10_ksxkn")
+
+[connection signal="level_load_started" from="LevelLoader" to="." method="_on_level_loader_level_load_started"]
+[connection signal="level_loaded" from="LevelLoader" to="." method="_on_level_loader_level_loaded"]
+[connection signal="levels_finished" from="LevelLoader" to="." method="_on_level_loader_levels_finished"]
