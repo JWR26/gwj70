@@ -4,17 +4,28 @@ extends Entity
 
 const SPEED: float = 64.0
 
+
 signal dragon_killed
 
 var list: Array[Entity]
 
-
+## Distance to stay away from target entity
+@export var hover_range: float = 100
 @export var fireball: PackedScene
 
-
-
-func _physics_process(_delta: float) -> void:
-	move_and_slide()
+func _physics_process(delta: float) -> void:
+	if list.is_empty():
+		return
+		
+	var target: Entity = list[0]
+	var target_dir := global_position.direction_to(target.global_position)
+	var target_dist := global_position.distance_to(target.global_position) - hover_range
+	if abs(target_dist) >= 0.05:
+		if target_dist >= SPEED * delta:
+			velocity = target_dir * SPEED
+		else:
+			velocity = target_dir * target_dist / delta
+		move_and_slide()
 
 
 func shoot_fireball(at: Vector2) -> void:
