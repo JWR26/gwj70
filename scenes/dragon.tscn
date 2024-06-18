@@ -10,11 +10,13 @@
 size = Vector2(32, 40)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gekxm"]
-radius = 640.0
+radius = 960.0
 
 [node name="Dragon" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
+collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_rp6r8")
+hover_range = 140.0
 fireball = ExtResource("2_26cet")
 health_component = NodePath("HealthComponent")
 
@@ -42,16 +44,20 @@ autostart = true
 offset_left = 128.0
 offset_right = -128.0
 offset_bottom = -336.0
-initial_health = 20
+initial_health = 3
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_dix0n")
-hp = 20
-max_hp = 20
+hp = 3
+max_hp = 3
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
+[connection signal="hp_updated" from="HealthComponent" to="." method="_on_health_component_hp_updated"]
 [connection signal="hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="update_hp"]
 [connection signal="max_hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="configure_max_health"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

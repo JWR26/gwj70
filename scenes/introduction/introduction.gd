@@ -1,11 +1,9 @@
 extends Control
 
 const INTRO_TEXT: PackedStringArray = [
-	"Tales are passed from generation to generation.",
-	"With origins no longer truely known, each listener will experience the enthraling tale of the teller.",
-	"And in turn, go on to tell their own interpritation of the events they were told.",
-	"These tales are folklore.",
-	"Its time I told you a story that someone once told me...",
+	"A story is only born from the retelling of ages, coveted by humans within dusty mouths and books.",
+	"But some stories shift before our very eyes, controlled by the threads of a higher power.",
+	"This folklore tale is not one, but of many, and you will see that fate can be played if you are the writer...",
 	]
 
 

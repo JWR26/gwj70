@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3d5vtiepdt02"]
+[gd_scene load_steps=8 format=3 uid="uid://b3d5vtiepdt02"]
 
 [ext_resource type="Script" path="res://scripts/house.gd" id="1_sp76u"]
 [ext_resource type="Texture2D" uid="uid://dwa3k8520pen2" path="res://assets/art/house.png" id="1_upnlf"]
+[ext_resource type="Texture2D" uid="uid://beystcagoapsd" path="res://assets/art/house_ground.png" id="2_0tapc"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="2_wu3q8"]
+[ext_resource type="Texture2D" uid="uid://dbet01e41t04x" path="res://assets/art/house_fire.png" id="3_n3e3v"]
+[ext_resource type="Texture2D" uid="uid://b42udqagvv8mf" path="res://assets/art/house_ashes.png" id="3_y81eu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g18os"]
 size = Vector2(64, 48)
@@ -10,8 +13,18 @@ size = Vector2(64, 48)
 [node name="House" type="StaticBody2D"]
 script = ExtResource("1_sp76u")
 
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture = ExtResource("2_0tapc")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_upnlf")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture = ExtResource("3_y81eu")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_n3e3v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 8)

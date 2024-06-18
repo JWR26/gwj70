@@ -5,8 +5,6 @@ extends Resource
 
 ## Villager Name
 @export var name: String  = ""
-## Villager age
-@export var age: int = 0
 ## This contains a single sentence of dialogue that can be displayed above the villager when the dragon has fled.
 @export var post_combat_dialogue: String = ""
 ## The dialogue that is displayed on a villager inhabiting the final world
@@ -15,3 +13,5 @@ extends Resource
 @export var death_description: String = ""
 ## To be said about the player who slays the dragon, who will obviously be dead at the point of telling the tale.
 @export var eulogy: String = ""
+
+@export var dragon_defeated_sentences: Array[String] = []

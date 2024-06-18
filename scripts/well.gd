@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 		if not can_hide:
 			return
 		
-		player.take_damage(DAMAGE) # negated the damage for a healing effect.
+		player.take_damage(DAMAGE, self) # negated the damage for a healing effect.
 
 
 

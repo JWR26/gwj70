@@ -1,11 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://n17ptbcg4vyb"]
+[gd_scene load_steps=11 format=3 uid="uid://n17ptbcg4vyb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_480yi"]
 [ext_resource type="Texture2D" uid="uid://dknlrr67pfxr1" path="res://assets/art/player_sprite.png" id="1_xjje4"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_2kc2m"]
 [ext_resource type="Script" path="res://scripts/user_input.gd" id="3_7gif4"]
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="3_dad5b"]
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="5_ali4m"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="6_jtxq0"]
+[ext_resource type="PackedScene" uid="uid://c276yu1h82qxs" path="res://scenes/arrow_counter.tscn" id="7_vqc37"]
+
+[sub_resource type="Resource" id="Resource_yih4t"]
+script = ExtResource("3_dad5b")
+name = "Ostric"
+post_combat_dialogue = ""
+end_game_dialogue = ""
+death_description = "As valliantly as he fought, he was no match for the firebreating monster reaking havoc upon the village"
+eulogy = ""
+dragon_defeated_sentences = Array[String](["As unlikely as it may sound, Ostric fought valliantly against the dragon and it fled, vowing to return for vengance..."])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgdie"]
 size = Vector2(16, 24)
@@ -15,6 +26,7 @@ motion_mode = 1
 script = ExtResource("1_480yi")
 user_input = NodePath("UserInputComponent")
 arrow = ExtResource("2_2kc2m")
+player_data = SubResource("Resource_yih4t")
 health_component = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -40,10 +52,27 @@ grow_horizontal = 1
 grow_vertical = 0
 initial_health = 4
 
+[node name="ArrowCounter" parent="CanvasLayer" instance=ExtResource("7_vqc37")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -32.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_jtxq0")
 hp = 4
 max_hp = 4
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 1.8
+one_shot = true
 
 [connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
 [connection signal="hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="update_hp"]

@@ -8,9 +8,6 @@
 [node name="Opening" instance=ExtResource("1_wr3hy")]
 images = Array[Texture2D]([ExtResource("2_rd0v2"), ExtResource("3_i6t27"), ExtResource("4_drfog")])
 
-[node name="BackgroundMusicPlayer" parent="." index="0"]
-bus = &"Master"
-
 [node name="ImagesContainer" parent="." index="2"]
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_right = 64

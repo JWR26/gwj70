@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://vk21yetcnykp"]
+
+[ext_resource type="Script" path="res://scripts/book.gd" id="1_mjhag"]
+[ext_resource type="Texture2D" uid="uid://8irdgptbslbs" path="res://assets/art/book.png" id="1_v7ef4"]
+[ext_resource type="FontFile" uid="uid://bj77ks2fb8blm" path="res://assets/fonts/knights-quest.regular.ttf" id="2_dsj51"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g4kbe"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+texture = ExtResource("1_v7ef4")
+
+[sub_resource type="LabelSettings" id="LabelSettings_mjrmx"]
+font = ExtResource("2_dsj51")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+shadow_size = 0
+
+[node name="Book" type="PanelContainer"]
+process_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_g4kbe")
+script = ExtResource("1_mjhag")
+
+[node name="HSplitContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LeftPage" type="VSplitContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+dragger_visibility = 2
+
+[node name="Text" type="Label" parent="HSplitContainer/LeftPage"]
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+size_flags_vertical = 3
+text = "[story text]"
+label_settings = SubResource("LabelSettings_mjrmx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Number" type="Label" parent="HSplitContainer/LeftPage"]
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+size_flags_vertical = 1
+text = "[page number]"
+label_settings = SubResource("LabelSettings_mjrmx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Margin" type="ColorRect" parent="HSplitContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="RightPage" type="VSplitContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+dragger_visibility = 2
+
+[node name="Text" type="Label" parent="HSplitContainer/RightPage"]
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+size_flags_vertical = 3
+text = "[story text]"
+label_settings = SubResource("LabelSettings_mjrmx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Number" type="Label" parent="HSplitContainer/RightPage"]
+custom_minimum_size = Vector2(64, 24)
+layout_mode = 2
+size_flags_vertical = 1
+text = "[page number]"
+label_settings = SubResource("LabelSettings_mjrmx")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

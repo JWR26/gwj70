@@ -41,6 +41,8 @@ gdscript/warnings/untyped_declaration=1
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="res://assets/art/cursor.png"
+mouse_cursor/custom_image_hotspot=Vector2(10, 10)
 
 [editor_plugins]
 
@@ -115,4 +117,5 @@ copy_path="res://"
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 renderer/canvas_textures/default_texture_repeat=0

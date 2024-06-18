@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c276yu1h82qxs"]
+
+[ext_resource type="Script" path="res://scripts/arrow_counter.gd" id="1_ekhsn"]
+[ext_resource type="Texture2D" uid="uid://bwrenfe28rpgx" path="res://assets/art/quiver.png" id="2_8kend"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c08vb"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+
+[node name="ArrowCounter" type="PanelContainer"]
+offset_right = 45.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_c08vb")
+script = ExtResource("1_ekhsn")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 2
+
+[node name="Count" type="Label" parent="HSplitContainer"]
+layout_mode = 2
+
+[node name="Quiver" type="TextureRect" parent="HSplitContainer"]
+layout_mode = 2
+texture = ExtResource("2_8kend")

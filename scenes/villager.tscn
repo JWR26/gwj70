@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://pwh6154vj0o5"]
+[gd_scene load_steps=9 format=3 uid="uid://pwh6154vj0o5"]
 
 [ext_resource type="Texture2D" uid="uid://b1ws3ft1wqfue" path="res://assets/art/villager_sprite.png" id="1_7r56l"]
 [ext_resource type="Script" path="res://scripts/villager.gd" id="1_pagdl"]
+[ext_resource type="PackedScene" uid="uid://d0gdldxjqyc5b" path="res://scenes/quiver.tscn" id="2_l14ln"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_ow4a7"]
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="4_tpmep"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="5_78rkw"]
@@ -9,8 +10,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2q1p"]
 size = Vector2(16, 24)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qja0j"]
+radius = 480.0
+
 [node name="Villager" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_pagdl")
+quiver = ExtResource("2_l14ln")
 arrow = ExtResource("2_ow4a7")
 health_component = NodePath("HealthComponent")
 
@@ -37,6 +42,19 @@ script = ExtResource("5_78rkw")
 hp = 2
 max_hp = 2
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qja0j")
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Container" type="Node" parent="."]
+
 [connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
 [connection signal="hp_updated" from="HealthComponent" to="HealthBar" method="update_hp"]
 [connection signal="max_hp_updated" from="HealthComponent" to="HealthBar" method="configure_max_health"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

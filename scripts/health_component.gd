@@ -4,11 +4,11 @@ class_name HealthComponent
 extends Node
 
 ## Emitted each time the hp value is modified.
-signal hp_updated(new_value)
+signal hp_updated(new_value: int)
 ## Emitted when the hp reaches zero.
 signal hp_depleted
 ## Emmitted when changing the max_hp value.
-signal max_hp_updated(new_value)
+signal max_hp_updated(new_value: int)
 
 ## Current HitPoints.
 @export var hp: int = 5
