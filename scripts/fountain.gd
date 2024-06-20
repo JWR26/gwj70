@@ -18,7 +18,7 @@ func _input(event: InputEvent) -> void:
 		if not can_heal:
 			return
 		
-		player.take_damage(-HEALTH_RESTORED, self) # negated the damage for a healing effect.
+		player.heal(HEALTH_RESTORED, self) # negated the damage for a healing effect.
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
