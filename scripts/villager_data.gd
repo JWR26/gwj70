@@ -5,13 +5,18 @@ extends Resource
 
 ## Villager Name
 @export var name: String  = ""
-## This contains a single sentence of dialogue that can be displayed above the villager when the dragon has fled.
-@export var post_combat_dialogue: String = ""
-## The dialogue that is displayed on a villager inhabiting the final world
-@export var end_game_dialogue: String = ""
-## To be said about the player upon their death when playing as this villager
-@export var death_description: String = ""
-## To be said about the player who slays the dragon, who will obviously be dead at the point of telling the tale.
-@export var eulogy: String = ""
 
-@export var dragon_defeated_sentences: Array[String] = []
+@export var descendents: Array[VillagerData] = []
+
+@export_multiline var intro: String
+@export_multiline var traitor: String
+@export_multiline var death: String
+@export_multiline var victory: String
+@export_multiline var well: String
+
+
+func get_descendent() -> VillagerData:
+	if descendents.is_empty():
+		var next: VillagerData = load("res://resources/villagers/myrabeth.tres")
+		return next.get_descendent()
+	return descendents[randi() % descendents.size()]

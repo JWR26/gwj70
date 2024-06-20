@@ -7,40 +7,44 @@ enum  STATE {
 	BUILT,
 	BURNING,
 	ASHES,
-	GONE,
 	}
 
-var current_state: STATE = STATE.NONE
-var burned: bool = false
+const HOUSE_SPRITES: Array[Texture2D] = [
+	preload("res://assets/art/house_none.png"),
+	preload("res://assets/art/house.png"),
+	preload("res://assets/art/house_fire.png"),
+	preload("res://assets/art/house_ashes.png"),
+	]
 
-@export var generation: int = 0
+var current_state: STATE = STATE.NONE
+
+@export var spawn_points: Array[Vector2] = []
+
+func _ready() -> void:
+	progress_state()
+
 
 func burn() -> void:
-	if burned:
+	if not current_state == STATE.BUILT:
 		return
 	
-	if current_state == STATE.NONE:
-		return
-	
-	burned = true
-	$Sprite2D2.show()
 	current_state = STATE.BURNING
+	$Sprite2D.set_texture(HOUSE_SPRITES[current_state])
 
 
-func progress_state(wave: int = 0) -> void:
-	if current_state == STATE.ASHES:
-		current_state = STATE.GONE
-		$Sprite2D3.hide()
+func progress_state() -> void:
+	if current_state == STATE.BUILT:
+		return
 	
-	if current_state == STATE.BURNING:
-		current_state = STATE.ASHES
-		$Sprite2D2.hide()
-		$Sprite2D3.show()
-		$Sprite2D.hide()
+	current_state += 1
+	current_state %= 4
+	$CollisionShape2D.set_deferred("disabled", current_state == STATE.NONE)
+	$Sprite2D.set_texture(HOUSE_SPRITES[current_state])
+
+
+func get_spawn_points() -> Array:
+	if current_state != STATE.BUILT:
+		return []
 	
-	if current_state == STATE.NONE and wave == generation:
-		current_state = STATE.BUILT
-		$Sprite2D4.show()
-		$Sprite2D.show()
-	
-	
+	return spawn_points.map(func(vec: Vector2) -> Vector2: return vec + global_position)
+

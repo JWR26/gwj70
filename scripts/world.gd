@@ -1,102 +1,192 @@
-extends Node2D
+class_name GameManager
 
-const UPGRADE_DIALOGUE: PackedStringArray = [
-	"During the dragon's absence, the villagers built a workshop and Fletchers got to work crafting more arrows...",
-	"Unbeknown to the villagers, a strange whitch emptied a vial into the fountain...",
+extends Node
+
+const FOUNTAIN_MESSAGE: PackedStringArray = [
+	"To combat the fire’s searing touch, %s scooped up some water from the village fountain. Amazingly the water healed %s's wounds. The magic of hydration."
 	]
 
+const INTRO_TEXT: PackedStringArray = [
+	"Now enough of that high fantasy blather, this is a tale of greed’s consequence. And it concerns a man called Osric.",
+	"His tale begins as the young man is hurrying back on his little sprite legs to Dragonnosh Village after stealing a mystical dragon’s egg. Bad idea you say? You don’t need to tell me, as the dragon had followed his trail.",
+	"It gave Osric a chance to hand over the egg and it would flap away. But if refused, it would make charred human skewers for entertainment, returning annually to wreak havoc. Standard dragon behaviour.",
+	"Our egg-stealer wanted fame, so he looked at the dragon and said, “Do one.”",
+	]
+
+const OSTRIC: VillagerData = preload("res://resources/villagers/ostric.tres")
 
 var player: Player
 var dragon: Dragon
 
 var dragon_killed: bool = false
-var generation_count: int = 0
-
-var dragon_defeated_by: Array[VillagerData] = []
-
-@onready var book_overlay: StoryBook = $CanvasLayer/Book
+var first_run: bool = true
+var traitor_threshold: int = 2
+var recursing: bool = false
 
 @onready var camera: GameCamera = $Camera2D
+@onready var dialogue_overlay: DialogueOverlay = $DialogueOverlay
+
 @export var dragon_scene: PackedScene
-
 @export var player_scene: PackedScene
-@export var houses: Array[VillageHouse]
+@export var villager_scene: PackedScene
+@export var gravestone_scene: PackedScene
 
-func _input(event: InputEvent) -> void:
-	if dragon_killed:
-		return
-	
-	if event.is_action_pressed("ui_accept"):
-		add_dragon()
-		add_player()
-		$CanvasLayer.hide()
-	
-	if event.is_action_pressed("ui_select"):
-		camera.reparent(self)
-		camera.reset_position()
-		$CanvasLayer.show()
-		$CanvasLayer/Label.update_story()
+func _ready() -> void:
+	start_story()
+	dialogue_overlay.auto_narrate = true
+	for text in INTRO_TEXT:
+		dialogue_overlay.show_story(text)
+		#await get_tree().create_timer(text.length() * 0.06).timeout
+		await get_tree().create_timer(1.0).timeout
+	dialogue_overlay.hide_story()
+	dialogue_overlay.auto_narrate = false
 
 
 func add_dragon() -> void:
 	if not dragon:
 		dragon = dragon_scene.instantiate()
 		dragon.dragon_killed.connect(_on_dragon_killed)
-		dragon.dragon_flee.connect(_on_dragon_flee)
 	
 	add_child(dragon)
-	dragon.start_attack(Vector2(960, 384))
 
 
-func add_player() -> void:
-	if not player:
-		player = player_scene.instantiate()
-		player.set_position(Vector2(704, 384))
-		player.player_died.connect(_on_player_killed)
+func add_player(data: VillagerData) -> void:
+	player = player_scene.instantiate()
+	player.set_position(Vector2(640, 640))
+	player.player_died.connect(_on_player_killed)
+	player.player_data = data
 	add_child(player)
 	camera.reparent(player)
-	camera.reset_position()
+	## zoom in on the player 
+	print("pan to player")
+	camera.focus_on(Vector2(0,32), Vector2(4,4))
 
 
-
-func progress_story(focal_point: Node) -> void:
-	generation_count += 1
-	
-	camera.reparent(focal_point)
-	camera.reset_position()
-	
+func advance_world_state() -> void:
+	# update the houses and spawn the villagers
 	for child in get_children():
 		if child is VillageHouse:
-			child.progress_state(generation_count)
+			child.progress_state()
+			add_villagers(child)
 	
-	$CanvasLayer.show()
-	
-	$CanvasLayer/Label.update_story(dragon_killed)
+	var next: VillagerData = player.player_data.get_descendent()
+	add_player(next)
+	first_run = true
+	dialogue_overlay.show_story(player.player_data.intro)
+
+
+func clean_scene() -> void:
+	for child in get_children():
+		if child is Villager:
+			child.queue_free()
+		
+		if child is Quiver:
+			child.queue_free()
+		
+		if child is Projectile:
+			child.queue_free()
+		
+		if child is Gravestone:
+			child.has_mourned = false
+
+
+func progress_story(text: String) -> void:
+	clean_scene()
+	dialogue_overlay.show_story(text)
+
+
+func start_story() -> void:
+	# update the houses and spawn the villagers
+	for child in get_children():
+		if child is VillageHouse:
+			child.progress_state()
+			add_villagers(child)
+	add_player(OSTRIC)
 
 
 func _on_dragon_killed() -> void:
-	update_story()
-	call_deferred("remove_child", player)
-	for v in dragon_defeated_by:
-		print(v.name)
 	dragon_killed = true
-	progress_story(self)
+	call_deferred("remove_child", player)
+	call_deferred("remove_child", dragon)
+	clean_scene()
+	progress_story(player.player_data.victory)
 
 
 func _on_player_killed() -> void:
-	call_deferred("remove_child", dragon)
-	progress_story(self)
+	remove_child(dragon)
+	var gravestone_text: String = "Here lies %s. Slain by the scaled beast" % player.player_data.name
+	place_graveston(player.global_position, gravestone_text)
+	remove_child(player)
+	clean_scene()
+	if traitor_threshold < 1:
+		progress_story(player.player_data.traitor)
+		traitor_threshold = 2
+	else:
+		progress_story(player.player_data.death)
 
 
-func _on_dragon_flee() -> void:
-	print("dragon fled and is offscreen")
-	update_story()
-	call_deferred("remove_child", dragon)
-	call_deferred("remove_child", player)
-	progress_story(self)
+func add_villagers(house: VillageHouse) -> void:
+	for pos: Vector2 in house.get_spawn_points():
+		var v: Villager = villager_scene.instantiate()
+		v.set_global_position(pos)
+		v.villager_killed_by_player.connect(_on_villager_killed_by_player)
+		add_child(v)
 
 
-func update_story() -> void:
-	if dragon_defeated_by.find(player.player_data) == -1:
-		dragon_defeated_by.append(player.player_data)
+func _on_villager_killed_by_player() -> void:
+	traitor_threshold -= 1
+	if traitor_threshold == 0:
+		player.set_traitor()
+		var traitor_text: String = "%s is attacking us! Death to the Traitor!" % player.player_data.name
+		dialogue_overlay.show_ingame_message(traitor_text)
+
+
+func _on_dialogue_overlay_narative_finished() -> void:
+	if dragon_killed:
+		return
+	# ostric is on the first playthoug so add the dragon and get playing
+	if first_run:
+		first_run = false
+		camera.focus_on()
+		add_dragon()
+		return
+	
+	print("dialogue finished")
+	advance_world_state()
+	print("reset camera to default")
+	camera.focus_on()
+	return
+
+
+func _on_fountain_fountain_used() -> void:
+	randomize()
+	var i: int = randi() % FOUNTAIN_MESSAGE.size()
+	var text: String = FOUNTAIN_MESSAGE[i].replace("%s", player.player_data.name)
+	dialogue_overlay.show_ingame_message(text)
+
+
+func _on_well_entered_well() -> void:
+	remove_child(player)
+	remove_child(dragon)
+	camera.reparent($Well)
+	print("pan to well")
+	camera.focus_on(Vector2(0, 32), Vector2(2,2))
+	progress_story(player.player_data.well)
+
+
+
+func _on_gravestone_player_mourned(text: String) -> void:
+	dialogue_overlay.show_ingame_message(text)
+
+
+func place_graveston(at: Vector2, text: String) -> void:
+	var g: Gravestone = gravestone_scene.instantiate()
+	g.eulogy = text
+	g.set_global_position(at)
+	g.player_mourned.connect(_on_gravestone_player_mourned)
+	call_deferred("add_child", g)
+	camera.call_deferred("reparent", g)
+	print("pan to gravestone")
+	camera.focus_on(Vector2(0, 64), Vector2(2,2))
+
 

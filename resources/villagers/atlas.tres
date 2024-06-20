@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://bqx5njpfv4xln"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_dpvuk"]
+
+[resource]
+script = ExtResource("1_dpvuk")
+name = "Atlas"
+descendents = Array[ExtResource("1_dpvuk")]([])
+intro = "This is a tale of a poor poor lad named Atlas,  a descendant of the Dragonslains. He’s been pulled into the tradition of death by dragon, just because a family legend says so.
+
+Fearful of his impending doom, Atlas entered Dragonnosh and made his peace with being another part of a story."
+traitor = "It came as a shock to all when Atlas fired an arrow at his neighbour. Sweet little Atlas, how could he! War changes a man. "
+death = "We were all rooting for him, but it was ultimately futile. The last thing Atlas saw was the dragon wink at him before the inevitable incineration. The villagers put down their popcorn with the show over and went back to business.
+
+And so the tale continued to elapse, the tale of the Dragonslains cemented in local folklore. I guess stories never do truly end. "
+victory = "Not quite believing the Dragonslain had become Dragonslayer, the scaly beast’s reign of terror was ended by little Atlas.
+
+The doomed tale was rewritten, Atlas the fate-changer. From a story of boldness, to revenge, and now to curse-breaking, the folklore has found its end. Or does it ever end?"
+well = "Little Atlas was scared out of his wits and needed a desperate escape. The well looked tantalising and so he jumped in. Only to fall to his death, bless his heart."

@@ -2,8 +2,11 @@ class_name Fountain
 
 extends StaticBody2D
 
+signal fountain_used
+
 const HEALTH_RESTORED: int = 10
 
+var available: bool = true
 var can_heal: bool = false
 var player: Player
 
@@ -17,12 +20,19 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact"):
 		if not can_heal:
 			return
-		
-		player.take_damage(-HEALTH_RESTORED, self) # negated the damage for a healing effect.
+		if not available:
+			return
+		available = false
+		$Timer.start(8.0)
+		text_prompt.hide()
+		player.take_damage(-HEALTH_RESTORED, player) # negated the damage for a healing effect.
+		fountain_used.emit()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if not body is Player:
+		return
+	if not available:
 		return
 	player = body
 	can_heal = true
@@ -32,6 +42,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if not body is Player:
 		return
-	
 	can_heal = false
 	text_prompt.hide()
+
+
+func _on_timer_timeout() -> void:
+	available = true

@@ -2,6 +2,8 @@ class_name VillageWell
 
 extends StaticBody2D
 
+signal entered_well
+
 const DAMAGE: int = 100
 
 var can_hide: bool = false
@@ -18,7 +20,7 @@ func _input(event: InputEvent) -> void:
 		if not can_hide:
 			return
 		
-		player.take_damage(DAMAGE, self) # negated the damage for a healing effect.
+		entered_well.emit()
 
 
 

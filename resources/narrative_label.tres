@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://detof8xguxgri"]
+
+[ext_resource type="FontFile" uid="uid://bj77ks2fb8blm" path="res://assets/fonts/knights-quest.regular.ttf" id="1_nt5hj"]
+
+[resource]
+font = ExtResource("1_nt5hj")
+font_size = 24
+shadow_size = 0

@@ -1,20 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://dk1bubtltrfbv"]
+[gd_scene load_steps=5 format=3 uid="uid://dk1bubtltrfbv"]
 
 [ext_resource type="Script" path="res://scripts/fireball.gd" id="1_k0gow"]
 [ext_resource type="Texture2D" uid="uid://b4n0uvgfdm0um" path="res://assets/art/arrow.png" id="2_cky7m"]
+[ext_resource type="Resource" uid="uid://b33io2cimsyfu" path="res://resources/arrow.tres" id="2_f3ceq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dpgib"]
+radius = 6.08276
 
 [node name="Arrow" type="Area2D"]
 script = ExtResource("1_k0gow")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_dpgib")
+data = ExtResource("2_f3ceq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_cky7m")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 0)
+shape = SubResource("CircleShape2D_dpgib")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

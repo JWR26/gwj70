@@ -38,8 +38,8 @@ func _input(event: InputEvent) -> void:
 		fill_pages()
 
 
-func add_page(str: String) -> void:
-	story.append(str)
+func add_page(narative_text: String) -> void:
+	story.append(narative_text)
 
 func fill_pages() -> void:
 	left_text.set_text(get_page_text(current_page))

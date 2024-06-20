@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://c6xuy2ww75sw1"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_31568"]
+
+[resource]
+script = ExtResource("1_31568")
+name = "Adahelm"
+descendents = Array[ExtResource("1_31568")]([])
+intro = "The next installment of the Dragonslain saga follows Adahelm. In his 80’s he was not exactly in his prime, but his youthful desire for a splash of adventure had never quelled. 
+How a splash of  adventure equates to fighting a fire breathing monster is beyond us all. Yet he still hobbled into battle. "
+traitor = "Some onlookers have chosen to believe it was due to Adahelm’s eyesight that he started shooting his own folk. Other had thought for a while that the old man may have been evil."
+death = "The first to set aflame was the tip of his beard, and ever so slowly it consumed Adahelm. The dragon was rather disappointed as the old man was practically skin and bones already. Not much of a meal..."
+victory = "With shaking arms and a singed beard, Adahelm feebly fired another arrow. But it was all that was needed. Hitting the weakspot on the dragon’s underbelly, the point drove deep and stopped the beating heart. 
+All the villagers cheered, but Adahelm paid no heed as he was still shooting at the sky. Impaired vision is the real villain. "
+well = "Adahelm had the idea to hide in the well. It was miraculous he even managed to leap the edge, but a shame he fell to his death."

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd5hwitph1mjj"]
+
+[ext_resource type="Script" path="res://scripts/gravestone.gd" id="1_8627h"]
+[ext_resource type="Texture2D" uid="uid://bapvhmk1sj758" path="res://assets/art/gravestone.png" id="2_uk6qa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jfk5"]
+size = Vector2(48, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v7ja"]
+size = Vector2(96, 48)
+
+[node name="Gravestone" type="StaticBody2D"]
+script = ExtResource("1_8627h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_uk6qa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3jfk5")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 24)
+shape = SubResource("RectangleShape2D_2v7ja")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -56.0
+offset_right = 40.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mourn [E]"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

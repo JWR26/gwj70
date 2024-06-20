@@ -13,6 +13,7 @@ size = Vector2(32, 40)
 radius = 960.0
 
 [node name="Dragon" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
+z_index = 2
 collision_mask = 0
 motion_mode = 1
 script = ExtResource("1_rp6r8")
@@ -42,14 +43,15 @@ autostart = true
 
 [node name="HealthBar" parent="CanvasLayer" instance=ExtResource("4_euxno")]
 offset_left = 128.0
+offset_top = 8.0
 offset_right = -128.0
-offset_bottom = -336.0
-initial_health = 3
+offset_bottom = -432.0
+initial_health = 90
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_dix0n")
-hp = 3
-max_hp = 3
+hp = 90
+max_hp = 90
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

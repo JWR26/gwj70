@@ -1,0 +1,41 @@
+[gd_scene load_steps=12 format=3 uid="uid://cnwcws5tnwb13"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_dlhsa"]
+[ext_resource type="PackedScene" uid="uid://brr6c764i5con" path="res://scenes/dragon.tscn" id="2_5d7dx"]
+[ext_resource type="PackedScene" uid="uid://n17ptbcg4vyb" path="res://scenes/player.tscn" id="3_1skhm"]
+[ext_resource type="Resource" uid="uid://btugy2nttfv6p" path="res://resources/villagers/myrabeth.tres" id="3_g7d1b"]
+[ext_resource type="Resource" uid="uid://bqx5njpfv4xln" path="res://resources/villagers/atlas.tres" id="3_s0dhy"]
+[ext_resource type="PackedScene" uid="uid://pwh6154vj0o5" path="res://scenes/villager.tscn" id="3_wna6q"]
+[ext_resource type="Script" path="res://scripts/game_camera.gd" id="5_o0qlm"]
+[ext_resource type="PackedScene" uid="uid://c8ohhlp0rbhlg" path="res://scenes/dialoge_overlay.tscn" id="7_576bi"]
+[ext_resource type="PackedScene" uid="uid://c5xu11wkab8ps" path="res://scenes/fountain.tscn" id="10_ouhlh"]
+[ext_resource type="PackedScene" uid="uid://b3d5vtiepdt02" path="res://scenes/house.tscn" id="11_5uba3"]
+[ext_resource type="PackedScene" uid="uid://ctegvdsp3jfxe" path="res://scenes/well.tscn" id="11_hsn62"]
+
+[node name="World" type="Node"]
+script = ExtResource("1_dlhsa")
+characters = Array[Resource("res://scripts/villager_data.gd")]([ExtResource("3_g7d1b"), ExtResource("3_s0dhy")])
+dragon_scene = ExtResource("2_5d7dx")
+player_scene = ExtResource("3_1skhm")
+villager_scene = ExtResource("3_wna6q")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+script = ExtResource("5_o0qlm")
+
+[node name="Fountain" parent="." instance=ExtResource("10_ouhlh")]
+position = Vector2(320, 72)
+
+[node name="Well" parent="." instance=ExtResource("11_hsn62")]
+position = Vector2(128, 256)
+
+[node name="House" parent="." instance=ExtResource("11_5uba3")]
+position = Vector2(512, 128)
+
+[node name="DialogueOverlay" parent="." instance=ExtResource("7_576bi")]
+layer = 2
+
+[connection signal="fountain_used" from="Fountain" to="." method="_on_fountain_fountain_used"]
+[connection signal="entered_well" from="Well" to="." method="_on_well_entered_well"]
+[connection signal="narative_finished" from="DialogueOverlay" to="." method="_on_dialogue_overlay_narative_finished"]

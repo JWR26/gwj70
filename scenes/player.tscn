@@ -12,11 +12,12 @@
 [sub_resource type="Resource" id="Resource_yih4t"]
 script = ExtResource("3_dad5b")
 name = "Ostric"
-post_combat_dialogue = ""
-end_game_dialogue = ""
-death_description = "As valliantly as he fought, he was no match for the firebreating monster reaking havoc upon the village"
-eulogy = ""
-dragon_defeated_sentences = Array[String](["As unlikely as it may sound, Ostric fought valliantly against the dragon and it fled, vowing to return for vengance..."])
+descendents = Array[ExtResource("3_dad5b")]([])
+intro = ""
+traitor = ""
+death = ""
+victory = ""
+well = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgdie"]
 size = Vector2(16, 24)
@@ -46,11 +47,13 @@ script = ExtResource("3_7gif4")
 anchors_preset = 2
 anchor_top = 1.0
 anchor_right = 0.0
-offset_top = -32.0
-offset_right = 128.0
+offset_left = 8.0
+offset_top = -48.0
+offset_right = 256.0
+offset_bottom = -8.0
 grow_horizontal = 1
 grow_vertical = 0
-initial_health = 4
+initial_health = 6
 
 [node name="ArrowCounter" parent="CanvasLayer" instance=ExtResource("7_vqc37")]
 anchors_preset = 3
@@ -67,8 +70,8 @@ grow_vertical = 0
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("6_jtxq0")
-hp = 4
-max_hp = 4
+hp = 6
+max_hp = 6
 
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 1.8

@@ -1,5 +1,13 @@
 {
   "hidden_columns": {
+    "res://assets/narative_spreadsheet_import.tres": {
+      "resource_local_to_scene": true,
+      "resource_path": true
+    },
+    "res://resources/": {
+      "resource_local_to_scene": true,
+      "resource_name": true
+    },
     "res://resources/villagers/": {
       "resource_local_to_scene": true,
       "resource_name": true

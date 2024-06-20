@@ -1,12 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://btol8w6nshao1"]
+[gd_scene load_steps=3 format=3 uid="uid://btol8w6nshao1"]
 
-[ext_resource type="Script" path="res://scenes/introduction/introduction.gd" id="1_p7hl0"]
-[ext_resource type="FontFile" uid="uid://bj77ks2fb8blm" path="res://assets/fonts/knights-quest.regular.ttf" id="2_j8gbc"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_cjnt5"]
-font = ExtResource("2_j8gbc")
-font_size = 24
-shadow_size = 0
+[ext_resource type="Script" path="res://scripts/introduction.gd" id="1_p7hl0"]
+[ext_resource type="LabelSettings" uid="uid://detof8xguxgri" path="res://resources/narrative_label.tres" id="2_tffc1"]
 
 [node name="Introduction" type="Control"]
 layout_mode = 3
@@ -18,19 +13,26 @@ grow_vertical = 2
 script = ExtResource("1_p7hl0")
 
 [node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(684, 384)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = -94.5
+offset_right = 182.0
+offset_bottom = 94.5
 grow_horizontal = 2
 grow_vertical = 2
-label_settings = SubResource("LabelSettings_cjnt5")
+label_settings = ExtResource("2_tffc1")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.5
 one_shot = true
 autostart = true
 
