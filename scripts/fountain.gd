@@ -25,8 +25,9 @@ func _input(event: InputEvent) -> void:
 		available = false
 		$Timer.start(8.0)
 		text_prompt.hide()
-		player.take_damage(-HEALTH_RESTORED, player) # negated the damage for a healing effect.
 		fountain_used.emit()
+		player.heal(HEALTH_RESTORED, self) # negated the damage for a healing effect.
+
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
