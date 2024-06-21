@@ -7,7 +7,7 @@
 script = ExtResource("1_0q4pn")
 name = "Osric"
 descendents = Array[ExtResource("1_0q4pn")]([ExtResource("1_bnju2")])
-intro = "Osric hurried on his little sprite legs and launched into the battle for Dragonnosh Village. Slay the dragon and go down in history. Simple really."
+intro = ""
 traitor = "Amidst the action, a stray arrow hit one of the villagers, killing them immediately. The villagers cried trator, death to Osric! Their fury decending upon him in the form of a dozen arrows."
 death = "Osric saw the fire-bellied beast hover overhead and a pillar of flame shot down, reducing him to ash. And so concluded Osric’s tale, leaving him charred and the village forever under the dragon’s eye, awaking yearly to attack once more. A warning to check one's confidence against the weight of fame."
 victory = "Miraculously, a final arrow impaled the dragon. It’s roar shook the sky and then it fell, defeated by Osric. The Attack on Dragonnosh went down in history, recalled around fires not quite as hot as the dragon’s. But Osric’s tale stood above all, cementing himself as a local legend. The dragonslayer. The Egg-stealer. The stuff of legends."

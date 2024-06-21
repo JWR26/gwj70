@@ -31,7 +31,7 @@ func _draw() -> void:
 		hits.erase(i)
 
 func display_damage(text:String, pos: Vector2) -> void:
-	display_text(text, pos, Color.WHITE)
+	display_text(text, pos, Color.DARK_RED)
 
 func display_heal(text:String, pos:Vector2) -> void:
 	display_text(text, pos, Color.GREEN)

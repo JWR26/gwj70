@@ -4,7 +4,7 @@ extends StaticBody2D
 
 signal fountain_used
 
-const HEALTH_RESTORED: int = 10
+const HEALTH_RESTORED: int = 3
 
 var available: bool = true
 var can_heal: bool = false
@@ -22,6 +22,7 @@ func _input(event: InputEvent) -> void:
 			return
 		if not available:
 			return
+		
 		available = false
 		$Timer.start(8.0)
 		text_prompt.hide()

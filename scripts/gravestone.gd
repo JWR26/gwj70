@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 		
 		has_mourned = true
 		text_prompt.hide()
-		player.take_damage(-HEALTH_RESTORED, player) # negated the damage for a healing effect.
+		player.heal(HEALTH_RESTORED, player) # negated the damage for a healing effect.
 		player_mourned.emit(eulogy)
 
 

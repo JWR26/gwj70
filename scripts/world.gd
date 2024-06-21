@@ -21,7 +21,7 @@ var dragon: Dragon
 var dragon_killed: bool = false
 var first_run: bool = true
 var traitor_threshold: int = 2
-var recursing: bool = false
+var recursing: bool = true
 
 @onready var camera: GameCamera = $Camera2D
 @onready var dialogue_overlay: DialogueOverlay = $DialogueOverlay
@@ -36,8 +36,8 @@ func _ready() -> void:
 	dialogue_overlay.auto_narrate = true
 	for text in INTRO_TEXT:
 		dialogue_overlay.show_story(text)
-		#await get_tree().create_timer(text.length() * 0.06).timeout
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(text.length() * 0.055).timeout
+		#await get_tree().create_timer(1.0).timeout
 	dialogue_overlay.hide_story()
 	dialogue_overlay.auto_narrate = false
 
@@ -57,9 +57,8 @@ func add_player(data: VillagerData) -> void:
 	player.player_data = data
 	add_child(player)
 	camera.reparent(player)
-	## zoom in on the player 
-	print("pan to player")
 	camera.focus_on(Vector2(0,32), Vector2(4,4))
+	dialogue_overlay.show_story(player.player_data.intro)
 
 
 func advance_world_state() -> void:
@@ -71,8 +70,6 @@ func advance_world_state() -> void:
 	
 	var next: VillagerData = player.player_data.get_descendent()
 	add_player(next)
-	first_run = true
-	dialogue_overlay.show_story(player.player_data.intro)
 
 
 func clean_scene() -> void:
@@ -144,17 +141,16 @@ func _on_villager_killed_by_player() -> void:
 func _on_dialogue_overlay_narative_finished() -> void:
 	if dragon_killed:
 		return
-	# ostric is on the first playthoug so add the dragon and get playing
-	if first_run:
-		first_run = false
+	if recursing:
+		print("no advance")
 		camera.focus_on()
 		add_dragon()
+		recursing = false
 		return
-	
-	print("dialogue finished")
+	# ostric is on the first playthoug so add the dragon and get playing
+	recursing = true
+	print("advancing world state")
 	advance_world_state()
-	print("reset camera to default")
-	camera.focus_on()
 	return
 
 
@@ -180,6 +176,13 @@ func _on_gravestone_player_mourned(text: String) -> void:
 
 
 func place_graveston(at: Vector2, text: String) -> void:
+	# dont put a gravestone too close to a house
+	for child in get_children():
+		if not child is VillageHouse:
+			continue
+		if child.global_position.distance_to(at) < 96.0:
+			return
+	
 	var g: Gravestone = gravestone_scene.instantiate()
 	g.eulogy = text
 	g.set_global_position(at)
