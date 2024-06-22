@@ -14,6 +14,7 @@ var player: Player
 
 func _ready() -> void:
 	text_prompt.hide()
+	$Unavailable.hide()
 
 
 func _input(event: InputEvent) -> void:
@@ -26,6 +27,8 @@ func _input(event: InputEvent) -> void:
 		available = false
 		$Timer.start(8.0)
 		text_prompt.hide()
+		$Available.hide()
+		$Unavailable.show()
 		fountain_used.emit()
 		player.heal(HEALTH_RESTORED, self) # negated the damage for a healing effect.
 
@@ -50,3 +53,5 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	available = true
+	$Available.show()
+	$Unavailable.hide()

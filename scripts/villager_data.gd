@@ -12,6 +12,7 @@ extends Resource
 @export_multiline var traitor: String
 @export_multiline var death: String
 @export_multiline var victory: String
+@export_multiline var forgivness: String
 @export_multiline var well: String
 
 

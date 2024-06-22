@@ -35,6 +35,7 @@ func show_ingame_message(message: String) -> void:
 
 
 func show_story(narative: String) -> void:
+	ingame_message.visible = false
 	$StoryMessage/Label2.visible = not auto_narrate
 	if narative_displayed:
 		print("updating story")
@@ -58,4 +59,5 @@ func hide_story() -> void:
 	narative_displayed = false
 	await $AnimationPlayer.animation_finished
 	narative_finished.emit()
+	ingame_message.visible = true
 

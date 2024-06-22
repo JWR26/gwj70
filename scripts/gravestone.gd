@@ -2,7 +2,7 @@ class_name Gravestone
 
 extends StaticBody2D
 
-const HEALTH_RESTORED: int = 1
+const HEALTH_RESTORED: int = 3
 
 signal player_mourned(text: String)
 

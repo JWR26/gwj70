@@ -2,7 +2,7 @@ class_name Player
 
 extends Entity
 
-signal player_died
+signal player_died(killed_by: Dragon)
 
 const SPEED: float = 64.0
 

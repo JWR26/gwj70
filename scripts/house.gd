@@ -9,16 +9,13 @@ enum  STATE {
 	ASHES,
 	}
 
-const HOUSE_SPRITES: Array[Texture2D] = [
-	preload("res://assets/art/house_none.png"),
-	preload("res://assets/art/house.png"),
-	preload("res://assets/art/house_fire.png"),
-	preload("res://assets/art/house_ashes.png"),
-	]
 
 var current_state: STATE = STATE.NONE
 
 @export var spawn_points: Array[Vector2] = []
+
+@export var house_texture: Sprite2D
+@export var burned_texture: Sprite2D
 
 func _ready() -> void:
 	progress_state()
@@ -29,17 +26,32 @@ func burn() -> void:
 		return
 	
 	current_state = STATE.BURNING
-	$Sprite2D.set_texture(HOUSE_SPRITES[current_state])
-
+	burned_texture.show()
+	house_texture.hide()
+	print("Burning. House state: ", current_state)
 
 func progress_state() -> void:
+	print("House state: ", current_state)
+	if current_state != STATE.BUILT:
+		current_state += 1
+		current_state %= 4
+	
+	$CollisionShape2D.set_deferred("disabled", current_state == STATE.NONE)
+	print("House state updated to: ", current_state)
+	
 	if current_state == STATE.BUILT:
+		burned_texture.hide()
+		house_texture.show()
 		return
 	
-	current_state += 1
-	current_state %= 4
-	$CollisionShape2D.set_deferred("disabled", current_state == STATE.NONE)
-	$Sprite2D.set_texture(HOUSE_SPRITES[current_state])
+	if current_state == STATE.ASHES:
+		burned_texture.show()
+		house_texture.hide()
+		return
+	
+	burned_texture.hide()
+	house_texture.hide()
+	
 
 
 func get_spawn_points() -> Array:

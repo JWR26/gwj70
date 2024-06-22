@@ -15,6 +15,7 @@ var target: Entity
 
 var hover_range: float = 100.0
 
+var is_shooting: bool = false
 var is_dead: bool = false
 
 @export var quiver: PackedScene
@@ -26,13 +27,19 @@ func _physics_process(_delta: float) -> void:
 		return
 	
 	if not target:
+		$AnimatedSprite2D.play("idle")
 		return
 	
 	var target_dir := global_position.direction_to(target.global_position)
 	var target_dist := global_position.distance_to(target.global_position) 
 	
+	if target_dir.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	
 	if target_dist > hover_range:
-		velocity = target_dir * SPEED
+		velocity = target_dir * SPEED if not is_shooting else Vector2.ZERO
+		if not is_shooting:
+			$AnimatedSprite2D.play("run")
 	else:
 		velocity = Vector2.ZERO
 		
@@ -47,15 +54,21 @@ func entity_died() -> void:
 	is_dead = true
 	hide()
 	$CollisionShape2D.set_deferred("disabled", true)
+	$AnimatedSprite2D.play("dead")
 
 
 func shoot(at: Vector2 = Vector2.RIGHT) -> void:
+	is_shooting = true
 	if is_dead:
 		return
 	var a: Projectile = arrow.instantiate()
 	var dir: Vector2 = global_position.direction_to(at)
 	a.configure(self, global_position, dir)
+	
+	$AnimatedSprite2D.play("shoot")
+	await  $AnimatedSprite2D.animation_finished
 	get_parent().add_child(a)
+	is_shooting = false
 
 
 func take_damage(damage: int, from: Entity) -> void:

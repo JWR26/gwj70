@@ -15,6 +15,7 @@ var fired_by: Entity
 
 func _ready() -> void:
 	rotation = Vector2.RIGHT.angle_to(direction)
+	$Sprite2D.set_texture(data.texture)
 
 
 func _physics_process(delta: float) -> void:
