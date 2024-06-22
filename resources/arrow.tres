@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ProjectileData" load_steps=3 format=3 uid="uid://b33io2cimsyfu"]
 
 [ext_resource type="Script" path="res://scripts/projectile_resource.gd" id="1_r065v"]
-[ext_resource type="Texture2D" uid="uid://b4n0uvgfdm0um" path="res://assets/art/arrow.png" id="2_a6w6h"]
+[ext_resource type="Texture2D" uid="uid://dfukwe07pml7v" path="res://assets/art/Arrow03.png" id="2_v126t"]
 
 [resource]
 script = ExtResource("1_r065v")
 name = "Arrow"
-texture = ExtResource("2_a6w6h")
+texture = ExtResource("2_v126t")
 damage = 1
 speed = 128.0
