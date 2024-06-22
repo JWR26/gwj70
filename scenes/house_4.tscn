@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://gj4hb6hw2whb"]
+
+[ext_resource type="Script" path="res://scripts/house.gd" id="1_6p8n8"]
+[ext_resource type="Texture2D" uid="uid://cvupdwgagp1jh" path="res://assets/art/Hut.png" id="2_monpt"]
+[ext_resource type="Texture2D" uid="uid://dbak4f8pbekkg" path="res://assets/art/HouseBurnt01.png" id="2_ybapv"]
+[ext_resource type="Script" path="res://scripts/health_component.gd" id="3_mk75t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g18os"]
+size = Vector2(96, 112)
+
+[node name="House" type="StaticBody2D" node_paths=PackedStringArray("house_texture", "burned_texture")]
+script = ExtResource("1_6p8n8")
+spawn_points = Array[Vector2]([Vector2(96, 64)])
+house_texture = NodePath("Sprite2D")
+burned_texture = NodePath("Burned")
+
+[node name="Burned" type="Sprite2D" parent="."]
+position = Vector2(0, 40)
+texture = ExtResource("2_ybapv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_monpt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_g18os")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_mk75t")
+hp = 1
+max_hp = 1

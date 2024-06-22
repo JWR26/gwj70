@@ -1,21 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3d5vtiepdt02"]
+[gd_scene load_steps=6 format=3 uid="uid://b3d5vtiepdt02"]
 
 [ext_resource type="Script" path="res://scripts/house.gd" id="1_sp76u"]
-[ext_resource type="Texture2D" uid="uid://dwa3k8520pen2" path="res://assets/art/house.png" id="1_upnlf"]
+[ext_resource type="Texture2D" uid="uid://bwbfcgylqyq3d" path="res://assets/art/House01.png" id="2_rale1"]
+[ext_resource type="Texture2D" uid="uid://cya6m1i8fwu0k" path="res://assets/art/HouseBurnt02.png" id="2_reckq"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="2_wu3q8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g18os"]
-size = Vector2(64, 48)
+size = Vector2(176, 128)
 
-[node name="House" type="StaticBody2D"]
+[node name="House" type="StaticBody2D" node_paths=PackedStringArray("house_texture", "burned_texture")]
 script = ExtResource("1_sp76u")
-spawn_points = Array[Vector2]([Vector2(-56, 48), Vector2(48, 64)])
+spawn_points = Array[Vector2]([Vector2(-128, 96), Vector2(64, 128)])
+house_texture = NodePath("Sprite2D")
+burned_texture = NodePath("Burned")
+
+[node name="Burned" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = ExtResource("2_reckq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_upnlf")
+texture = ExtResource("2_rale1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_g18os")
 
 [node name="HealthComponent" type="Node" parent="."]

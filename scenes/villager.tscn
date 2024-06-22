@@ -1,13 +1,115 @@
-[gd_scene load_steps=8 format=3 uid="uid://pwh6154vj0o5"]
+[gd_scene load_steps=22 format=3 uid="uid://pwh6154vj0o5"]
 
-[ext_resource type="Texture2D" uid="uid://b1ws3ft1wqfue" path="res://assets/art/villager_sprite.png" id="1_7r56l"]
 [ext_resource type="Script" path="res://scripts/villager.gd" id="1_pagdl"]
 [ext_resource type="PackedScene" uid="uid://d0gdldxjqyc5b" path="res://scenes/quiver.tscn" id="2_l14ln"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_ow4a7"]
+[ext_resource type="Texture2D" uid="uid://d6euwehxtc88" path="res://assets/art/VillagerFireDeath.png" id="4_350gv"]
+[ext_resource type="Texture2D" uid="uid://bk4xxe0tk4mql" path="res://assets/art/Villager01Idle.png" id="4_tl2c1"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="5_78rkw"]
+[ext_resource type="Texture2D" uid="uid://bd4ifp0xg0uel" path="res://assets/art/Villager01Run.png" id="6_hxh5t"]
+[ext_resource type="Texture2D" uid="uid://c04ku0sgpnosb" path="res://assets/art/Villager01Shoot.png" id="7_gm3c4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2q1p"]
-size = Vector2(16, 24)
+size = Vector2(32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3ave"]
+atlas = ExtResource("6_hxh5t")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a6ah"]
+atlas = ExtResource("6_hxh5t")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm8us"]
+atlas = ExtResource("6_hxh5t")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0weh8"]
+atlas = ExtResource("6_hxh5t")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdues"]
+atlas = ExtResource("6_hxh5t")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4ym2"]
+atlas = ExtResource("6_hxh5t")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sww2j"]
+atlas = ExtResource("7_gm3c4")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnkyc"]
+atlas = ExtResource("7_gm3c4")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yll7v"]
+atlas = ExtResource("7_gm3c4")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ud5go"]
+atlas = ExtResource("7_gm3c4")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nknli"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_350gv")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tl2c1")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3ave")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a6ah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm8us")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0weh8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdues")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4ym2")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sww2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnkyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yll7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ud5go")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 12.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qja0j"]
 radius = 480.0
@@ -19,10 +121,13 @@ arrow = ExtResource("2_ow4a7")
 health_component = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_y2q1p")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_7r56l")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nknli")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("5_78rkw")

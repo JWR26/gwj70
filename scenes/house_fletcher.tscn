@@ -1,18 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1o4itgvpgjsl"]
+[gd_scene load_steps=6 format=3 uid="uid://c1o4itgvpgjsl"]
 
-[ext_resource type="Script" path="res://scripts/house.gd" id="1_sq4cl"]
-[ext_resource type="Texture2D" uid="uid://dwa3k8520pen2" path="res://assets/art/house.png" id="2_ctu65"]
+[ext_resource type="Script" path="res://scripts/house_fletcher.gd" id="1_omrmm"]
+[ext_resource type="PackedScene" uid="uid://d0gdldxjqyc5b" path="res://scenes/quiver.tscn" id="2_us1an"]
+[ext_resource type="Texture2D" uid="uid://cya6m1i8fwu0k" path="res://assets/art/HouseBurnt02.png" id="3_8qa2i"]
+[ext_resource type="Texture2D" uid="uid://bcbr7f020seus" path="res://assets/art/FletcherHut.png" id="3_620b2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g18os"]
-size = Vector2(64, 48)
+size = Vector2(160, 128)
 
-[node name="HouseFletcher" type="StaticBody2D"]
-script = ExtResource("1_sq4cl")
-spawn_points = Array[Vector2]([Vector2(-56, 48), Vector2(48, 64), Vector2(-32, -48)])
+[node name="HouseFletcher" type="StaticBody2D" node_paths=PackedStringArray("house_texture", "burned_texture")]
+script = ExtResource("1_omrmm")
+quiver_scene = ExtResource("2_us1an")
+spawn_points = Array[Vector2]([Vector2(128, 96), Vector2(-128, 96)])
+house_texture = NodePath("Sprite2D")
+burned_texture = NodePath("Burned")
+
+[node name="Burned" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = ExtResource("3_8qa2i")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ctu65")
+texture = ExtResource("3_620b2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_g18os")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 8.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

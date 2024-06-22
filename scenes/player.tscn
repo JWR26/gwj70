@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://n17ptbcg4vyb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_480yi"]
-[ext_resource type="Texture2D" uid="uid://dknlrr67pfxr1" path="res://assets/art/player_sprite.png" id="1_xjje4"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_2kc2m"]
 [ext_resource type="Script" path="res://scripts/user_input.gd" id="3_7gif4"]
 [ext_resource type="Script" path="res://scripts/villager_data.gd" id="3_dad5b"]
+[ext_resource type="Texture2D" uid="uid://dknlrr67pfxr1" path="res://assets/art/placeholder/player_sprite.png" id="4_kbkh2"]
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="5_ali4m"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="6_jtxq0"]
 [ext_resource type="PackedScene" uid="uid://c276yu1h82qxs" path="res://scenes/arrow_counter.tscn" id="7_vqc37"]
@@ -17,6 +17,7 @@ intro = ""
 traitor = ""
 death = ""
 victory = ""
+forgivness = ""
 well = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgdie"]
@@ -34,7 +35,7 @@ health_component = NodePath("HealthComponent")
 shape = SubResource("RectangleShape2D_lgdie")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_xjje4")
+texture = ExtResource("4_kbkh2")
 
 [node name="UserInputComponent" type="Node" parent="."]
 script = ExtResource("3_7gif4")

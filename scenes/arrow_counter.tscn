@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c276yu1h82qxs"]
 
 [ext_resource type="Script" path="res://scripts/arrow_counter.gd" id="1_ekhsn"]
-[ext_resource type="Texture2D" uid="uid://bwrenfe28rpgx" path="res://assets/art/quiver.png" id="2_8kend"]
+[ext_resource type="Texture2D" uid="uid://d1m6iyl1gi4kd" path="res://assets/art/Arrows.png" id="2_dk8qg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c08vb"]
 content_margin_left = 16.0
@@ -23,4 +23,4 @@ layout_mode = 2
 
 [node name="Quiver" type="TextureRect" parent="HSplitContainer"]
 layout_mode = 2
-texture = ExtResource("2_8kend")
+texture = ExtResource("2_dk8qg")

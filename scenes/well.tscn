@@ -1,19 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctegvdsp3jfxe"]
+[gd_scene load_steps=6 format=3 uid="uid://ctegvdsp3jfxe"]
 
-[ext_resource type="Texture2D" uid="uid://c1th8d856f1e" path="res://assets/art/well.png" id="1_qf7n5"]
 [ext_resource type="Script" path="res://scripts/well.gd" id="1_t87jh"]
+[ext_resource type="Texture2D" uid="uid://btxjuspqo17kc" path="res://assets/art/Well.png" id="2_iuta3"]
+[ext_resource type="LabelSettings" uid="uid://detof8xguxgri" path="res://resources/narrative_label.tres" id="3_7etsp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_notrd"]
-size = Vector2(48, 48)
+size = Vector2(80, 80)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4mvy4"]
-size = Vector2(96, 96)
+size = Vector2(128, 128)
 
 [node name="Well" type="StaticBody2D"]
 script = ExtResource("1_t87jh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_qf7n5")
+texture = ExtResource("2_iuta3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_notrd")
@@ -30,12 +31,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -64.0
-offset_top = -64.0
+offset_top = -88.0
 offset_right = 64.0
-offset_bottom = -32.0
+offset_bottom = -39.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "HIDE [E]"
+text = "HIDE 
+[SPACE]"
+label_settings = ExtResource("3_7etsp")
 horizontal_alignment = 1
 vertical_alignment = 1
 

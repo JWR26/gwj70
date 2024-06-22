@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://brr6c764i5con"]
 
 [ext_resource type="Script" path="res://scripts/dragon.gd" id="1_rp6r8"]
-[ext_resource type="Texture2D" uid="uid://dpvv6vbq7npq8" path="res://assets/art/dragon_sprite.png" id="1_y81sn"]
+[ext_resource type="Texture2D" uid="uid://dpvv6vbq7npq8" path="res://assets/art/placeholder/dragon_sprite.png" id="1_y81sn"]
 [ext_resource type="PackedScene" uid="uid://dc7820fbps1di" path="res://scenes/fireball.tscn" id="2_26cet"]
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="4_euxno"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="5_dix0n"]
