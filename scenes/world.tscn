@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cnwcws5tnwb13"]
+[gd_scene load_steps=16 format=3 uid="uid://cnwcws5tnwb13"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_dlhsa"]
 [ext_resource type="PackedScene" uid="uid://brr6c764i5con" path="res://scenes/dragon.tscn" id="2_5d7dx"]
@@ -6,12 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://pwh6154vj0o5" path="res://scenes/villager.tscn" id="3_wna6q"]
 [ext_resource type="PackedScene" uid="uid://cd5hwitph1mjj" path="res://scenes/gravestone.tscn" id="5_lkynr"]
 [ext_resource type="Script" path="res://scripts/game_camera.gd" id="5_o0qlm"]
-[ext_resource type="Texture2D" uid="uid://duvb22um4t5vb" path="res://assets/art/GroundTiles.png" id="6_ss3pf"]
+[ext_resource type="Texture2D" uid="uid://duvb22um4t5vb" path="res://art/GroundTiles.png" id="6_ss3pf"]
 [ext_resource type="PackedScene" uid="uid://c8ohhlp0rbhlg" path="res://scenes/dialoge_overlay.tscn" id="7_576bi"]
 [ext_resource type="PackedScene" uid="uid://c5xu11wkab8ps" path="res://scenes/fountain.tscn" id="10_ouhlh"]
 [ext_resource type="PackedScene" uid="uid://b3d5vtiepdt02" path="res://scenes/house.tscn" id="11_5uba3"]
 [ext_resource type="PackedScene" uid="uid://ctegvdsp3jfxe" path="res://scenes/well.tscn" id="11_hsn62"]
 [ext_resource type="PackedScene" uid="uid://c1o4itgvpgjsl" path="res://scenes/house_fletcher.tscn" id="12_hbfxu"]
+[ext_resource type="AudioStream" uid="uid://bmloo7rmv022g" path="res://assets/music/folklore_battle_song_idk.wav" id="13_qjcc2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7pmay"]
 texture = ExtResource("6_ss3pf")
@@ -156,6 +157,10 @@ layer = 2
 
 [node name="HouseFletcher" parent="." instance=ExtResource("12_hbfxu")]
 position = Vector2(184, 824)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_qjcc2")
+autoplay = true
 
 [connection signal="fountain_used" from="Fountain" to="." method="_on_fountain_fountain_used"]
 [connection signal="entered_well" from="Well" to="." method="_on_well_entered_well"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://btol8w6nshao1"]
+[gd_scene load_steps=4 format=3 uid="uid://btol8w6nshao1"]
 
 [ext_resource type="Script" path="res://scripts/introduction.gd" id="1_p7hl0"]
 [ext_resource type="LabelSettings" uid="uid://detof8xguxgri" path="res://resources/narrative_label.tres" id="2_tffc1"]
+[ext_resource type="AudioStream" uid="uid://dqiih5dsng6x2" path="res://assets/music/Introduction.ogg" id="3_h076o"]
 
 [node name="Introduction" type="Control"]
 layout_mode = 3
@@ -35,5 +36,9 @@ autowrap_mode = 2
 wait_time = 0.5
 one_shot = true
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_h076o")
+autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="update_text"]
