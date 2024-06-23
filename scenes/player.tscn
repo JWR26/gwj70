@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://n17ptbcg4vyb"]
+[gd_scene load_steps=12 format=3 uid="uid://n17ptbcg4vyb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_480yi"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_2kc2m"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="5_ali4m"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="6_jtxq0"]
 [ext_resource type="PackedScene" uid="uid://c276yu1h82qxs" path="res://scenes/arrow_counter.tscn" id="7_vqc37"]
+[ext_resource type="Script" path="res://scenes/StatusMessage.gd" id="9_5yp1k"]
 
 [sub_resource type="Resource" id="Resource_yih4t"]
 script = ExtResource("3_dad5b")
@@ -77,6 +78,10 @@ max_hp = 6
 [node name="ShootCooldown" type="Timer" parent="."]
 wait_time = 1.8
 one_shot = true
+
+[node name="StatusMessage" type="Node2D" parent="."]
+position = Vector2(0, -28)
+script = ExtResource("9_5yp1k")
 
 [connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
 [connection signal="hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="update_hp"]

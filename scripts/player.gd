@@ -18,6 +18,7 @@ var arrow_count: int = 6 :
 
 @onready var cooldown_timer: Timer = $ShootCooldown
 @onready var arrow_counter: ArrowCounter = $CanvasLayer/ArrowCounter
+@onready var status_message: StatusMessage = $StatusMessage
 
 @export var user_input: UserInputComponent
 @export var arrow: PackedScene
@@ -45,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 
 func shoot(at: Vector2 = Vector2.RIGHT) -> void:
 	if not arrow_count > 0:
+		status_message.display_status("Need Arrows", Vector2.ZERO, 20, Color.DARK_RED)
 		return
 	
 	if not cooldown_timer.is_stopped():
