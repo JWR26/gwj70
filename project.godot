@@ -29,7 +29,7 @@ config/icon="res://icon.svg"
 
 AppConfig="*res://addons/maaacks_game_template/base/scenes/Autoloads/AppConfig.tscn"
 SceneLoader="*res://addons/maaacks_game_template/base/scenes/Autoloads/SceneLoader.tscn"
-ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn"
+ProjectMusicController="res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectMusicController.tscn"
 ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/Autoloads/ProjectUISoundController.tscn"
 DamageNumbersServer="*res://scripts/damage_number_server.gd"
 
