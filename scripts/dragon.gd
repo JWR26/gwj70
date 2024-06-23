@@ -30,6 +30,7 @@ var current_state: STATE = STATE.PHASE_1
 @onready var right_wing_sprite: Sprite2D = $Body/RightWingSprite
 @onready var body_sprite: Sprite2D = $Body/BodySprite
 @onready var left_wing_sprite: Sprite2D = $Body/LeftWingSprite
+@onready var fireball_audio: AudioStreamPlayer2D = $FireballAudioStream
 
 var facing_right := false
 
@@ -73,6 +74,7 @@ func shoot_fireball(at: Vector2) -> void:
 	var dir: Vector2 = global_position.direction_to(at)
 	a.configure(self, global_position, dir)
 	get_parent().add_child(a)
+	fireball_audio.play()
 
 
 func take_damage(damage: int, from: Entity) -> void:

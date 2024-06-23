@@ -20,6 +20,7 @@ var is_dead: bool = false
 
 @export var quiver: PackedScene
 @export var arrow: PackedScene
+@onready var bow_audio_stream: AudioStreamPlayer2D = $BowAudioStream
 
 
 func _physics_process(_delta: float) -> void:
@@ -66,6 +67,7 @@ func shoot(at: Vector2 = Vector2.RIGHT) -> void:
 	a.configure(self, global_position, dir)
 	
 	$AnimatedSprite2D.play("shoot")
+	bow_audio_stream.play()
 	await  $AnimatedSprite2D.animation_finished
 	get_parent().add_child(a)
 	is_shooting = false

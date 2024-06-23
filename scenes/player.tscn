@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://n17ptbcg4vyb"]
+[gd_scene load_steps=16 format=3 uid="uid://n17ptbcg4vyb"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_480yi"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_2kc2m"]
@@ -9,6 +9,9 @@
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="6_jtxq0"]
 [ext_resource type="PackedScene" uid="uid://c276yu1h82qxs" path="res://scenes/arrow_counter.tscn" id="7_vqc37"]
 [ext_resource type="Script" path="res://scenes/StatusMessage.gd" id="9_5yp1k"]
+[ext_resource type="AudioStream" uid="uid://d13fal8tfpci1" path="res://assets/sfx/Bow Arrow Fire A.wav" id="10_wwp3a"]
+[ext_resource type="AudioStream" uid="uid://1aa5jmjvglrj" path="res://assets/sfx/Bow Arrow Fire B.wav" id="11_5vprn"]
+[ext_resource type="AudioStream" uid="uid://dhjvsb526gk1f" path="res://assets/sfx/Bow Arrow Fire C.wav" id="12_4wlsc"]
 
 [sub_resource type="Resource" id="Resource_yih4t"]
 script = ExtResource("3_dad5b")
@@ -23,6 +26,16 @@ well = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgdie"]
 size = Vector2(16, 29)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ytyjb"]
+playback_mode = 1
+streams_count = 3
+stream_0/stream = ExtResource("10_wwp3a")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("11_5vprn")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("12_4wlsc")
+stream_2/weight = 1.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("user_input", "health_component")]
 motion_mode = 1
@@ -85,6 +98,9 @@ one_shot = true
 [node name="StatusMessage" type="Node2D" parent="."]
 position = Vector2(0, -28)
 script = ExtResource("9_5yp1k")
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ytyjb")
 
 [connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
 [connection signal="hp_updated" from="HealthComponent" to="CanvasLayer/HealthBar" method="update_hp"]

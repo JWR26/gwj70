@@ -1,16 +1,29 @@
-[gd_scene load_steps=8 format=3 uid="uid://pwh6154vj0o5"]
+[gd_scene load_steps=12 format=3 uid="uid://pwh6154vj0o5"]
 
 [ext_resource type="Script" path="res://scripts/villager.gd" id="1_pagdl"]
 [ext_resource type="PackedScene" uid="uid://d0gdldxjqyc5b" path="res://scenes/quiver.tscn" id="2_l14ln"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_ow4a7"]
 [ext_resource type="SpriteFrames" uid="uid://bh7vkur2foe4f" path="res://resources/villagerAnimation.tres" id="4_a57i5"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="5_78rkw"]
+[ext_resource type="AudioStream" uid="uid://d13fal8tfpci1" path="res://assets/sfx/Bow Arrow Fire A.wav" id="6_gbalv"]
+[ext_resource type="AudioStream" uid="uid://1aa5jmjvglrj" path="res://assets/sfx/Bow Arrow Fire B.wav" id="7_ebp78"]
+[ext_resource type="AudioStream" uid="uid://dhjvsb526gk1f" path="res://assets/sfx/Bow Arrow Fire C.wav" id="8_tvueb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2q1p"]
 size = Vector2(32, 48)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qja0j"]
 radius = 480.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_lfh1y"]
+playback_mode = 1
+streams_count = 3
+stream_0/stream = ExtResource("6_gbalv")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("7_ebp78")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("8_tvueb")
+stream_2/weight = 1.0
 
 [node name="Villager" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
 script = ExtResource("1_pagdl")
@@ -42,6 +55,9 @@ wait_time = 2.0
 autostart = true
 
 [node name="Container" type="Node" parent="."]
+
+[node name="BowAudioStream" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_lfh1y")
 
 [connection signal="hp_depleted" from="HealthComponent" to="." method="entity_died"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

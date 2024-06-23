@@ -20,6 +20,7 @@ var arrow_count: int = 6 :
 @onready var arrow_counter: ArrowCounter = $CanvasLayer/ArrowCounter
 @onready var status_message: StatusMessage = $StatusMessage
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var shoot_audio: AudioStreamPlayer2D = $ShootAudio
 
 @export var user_input: UserInputComponent
 @export var arrow: PackedScene
@@ -69,6 +70,7 @@ func shoot(at: Vector2 = Vector2.RIGHT) -> void:
 	add_arrows(-1)
 	is_shooting = true
 	sprite.play("shoot")
+	shoot_audio.play()
 	sprite.flip_h = (get_global_mouse_position() - global_position).x < 0
 	await sprite.animation_finished
 	is_shooting = false

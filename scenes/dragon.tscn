@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://brr6c764i5con"]
+[gd_scene load_steps=15 format=3 uid="uid://brr6c764i5con"]
 
 [ext_resource type="Script" path="res://scripts/dragon.gd" id="1_rp6r8"]
 [ext_resource type="PackedScene" uid="uid://dc7820fbps1di" path="res://scenes/fireball.tscn" id="2_26cet"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="5_dix0n"]
 [ext_resource type="Texture2D" uid="uid://jxeeahwxjc2n" path="res://art/DragonBodyFlying.png" id="6_3tc7q"]
 [ext_resource type="Texture2D" uid="uid://cns3u8kibsv21" path="res://art/DragonFrontWing.png" id="7_via2j"]
+[ext_resource type="AudioStream" uid="uid://txqk1kfsgcqp" path="res://assets/sfx/Whoosh Fireball 001.wav" id="8_l2yev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37ste"]
 size = Vector2(83, 106)
@@ -100,6 +101,12 @@ _data = {
 "fly": SubResource("Animation_ldq2m")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o2i8y"]
+random_pitch = 3.0
+streams_count = 1
+stream_0/stream = ExtResource("8_l2yev")
+stream_0/weight = 1.0
+
 [node name="Dragon" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
 z_index = 2
 collision_mask = 0
@@ -162,6 +169,9 @@ libraries = {
 "": SubResource("AnimationLibrary_xs7by")
 }
 autoplay = "fly"
+
+[node name="FireballAudioStream" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_o2i8y")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
