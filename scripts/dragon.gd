@@ -27,6 +27,11 @@ var current_state: STATE = STATE.PHASE_1
 ## Distance to stay away from target entity
 @export var hover_range: float = 120
 @export var fireball: PackedScene
+@onready var right_wing_sprite: Sprite2D = $Body/RightWingSprite
+@onready var body_sprite: Sprite2D = $Body/BodySprite
+@onready var left_wing_sprite: Sprite2D = $Body/LeftWingSprite
+
+var facing_right := false
 
 func _ready() -> void:
 	set_global_position(START_POSITION)
@@ -35,9 +40,14 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	velocity = get_direction() * SPEED[current_state]
-	
 	move_and_slide()
+	update_animation()
 
+func update_animation() -> void:
+	right_wing_sprite.flip_h = facing_right
+	body_sprite.flip_h = facing_right
+	left_wing_sprite.flip_h = facing_right
+	
 ## returns the direction the dragon will travel based on the current_state.
 func get_direction() -> Vector2:
 	if current_state == STATE.PHASE_1:
@@ -48,6 +58,7 @@ func get_direction() -> Vector2:
 		var target_dir := global_position.direction_to(target_pos)
 		var target_dist := global_position.distance_to(target_pos) 
 		
+		facing_right = target_dir.x > 0.01
 		if target_dist > hover_range:
 			return target_dir
 		

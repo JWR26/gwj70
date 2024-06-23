@@ -1,16 +1,104 @@
-[gd_scene load_steps=8 format=3 uid="uid://brr6c764i5con"]
+[gd_scene load_steps=13 format=3 uid="uid://brr6c764i5con"]
 
 [ext_resource type="Script" path="res://scripts/dragon.gd" id="1_rp6r8"]
-[ext_resource type="Texture2D" uid="uid://dpvv6vbq7npq8" path="res://assets/art/placeholder/dragon_sprite.png" id="1_y81sn"]
 [ext_resource type="PackedScene" uid="uid://dc7820fbps1di" path="res://scenes/fireball.tscn" id="2_26cet"]
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="4_euxno"]
+[ext_resource type="Texture2D" uid="uid://dbqhjfvge3sq4" path="res://art/DragonBackWing.png" id="5_1h8db"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="5_dix0n"]
+[ext_resource type="Texture2D" uid="uid://jxeeahwxjc2n" path="res://art/DragonBodyFlying.png" id="6_3tc7q"]
+[ext_resource type="Texture2D" uid="uid://cns3u8kibsv21" path="res://art/DragonFrontWing.png" id="7_via2j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37ste"]
-size = Vector2(32, 40)
+size = Vector2(83, 106)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gekxm"]
 radius = 960.0
+
+[sub_resource type="Animation" id="Animation_ldq2m"]
+resource_name = "fly"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/RightWingSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/LeftWingSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 7]
+}
+
+[sub_resource type="Animation" id="Animation_deh0k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/RightWingSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body/LeftWingSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xs7by"]
+_data = {
+"RESET": SubResource("Animation_deh0k"),
+"fly": SubResource("Animation_ldq2m")
+}
 
 [node name="Dragon" type="CharacterBody2D" node_paths=PackedStringArray("health_component")]
 z_index = 2
@@ -22,10 +110,8 @@ fireball = ExtResource("2_26cet")
 health_component = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_37ste")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_y81sn")
 
 [node name="FireballContainer" type="Node" parent="."]
 
@@ -33,6 +119,7 @@ texture = ExtResource("1_y81sn")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(26, 4)
 shape = SubResource("CircleShape2D_gekxm")
 
 [node name="ShootTimer" type="Timer" parent="."]
@@ -54,6 +141,27 @@ hp = 90
 max_hp = 90
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Body" type="Node2D" parent="."]
+position = Vector2(0, 9)
+
+[node name="RightWingSprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("5_1h8db")
+hframes = 8
+
+[node name="BodySprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("6_3tc7q")
+hframes = 8
+
+[node name="LeftWingSprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("7_via2j")
+hframes = 8
+
+[node name="BodyAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xs7by")
+}
+autoplay = "fly"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
