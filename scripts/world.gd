@@ -65,6 +65,7 @@ func add_player(data: VillagerData) -> void:
 	camera.reparent(player)
 	camera.focus_on(Vector2(0,32), Vector2(4,4))
 	dialogue_overlay.show_story(player.player_data.intro)
+	character_list.erase(data)
 
 
 func advance_world_state() -> void:
@@ -76,8 +77,11 @@ func advance_world_state() -> void:
 	
 	if character_list.is_empty():
 		get_tree().change_scene_to_file("res://scenes/ending.tscn")
+		return
 	
 	var next: VillagerData = player.player_data.get_descendent()
+	if next == null:
+		next = character_list.front()
 	add_player(next)
 
 

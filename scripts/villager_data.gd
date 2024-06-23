@@ -18,6 +18,5 @@ extends Resource
 
 func get_descendent() -> VillagerData:
 	if descendents.is_empty():
-		var next: VillagerData = load("res://resources/villagers/myrabeth.tres")
-		return next.get_descendent()
+		return null
 	return descendents[randi() % descendents.size()]
