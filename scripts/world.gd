@@ -42,8 +42,8 @@ func _ready() -> void:
 	dialogue_overlay.auto_narrate = true
 	for text in INTRO_TEXT:
 		dialogue_overlay.show_story(text)
-		#await get_tree().create_timer(text.length() * 0.055).timeout
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(text.length() * 0.055).timeout
+		#await get_tree().create_timer(1.0).timeout
 	dialogue_overlay.hide_story()
 	dialogue_overlay.auto_narrate = false
 

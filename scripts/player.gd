@@ -37,10 +37,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if global_position.x < 64:
-		velocity = Vector2.RIGHT * SPEED
-	else:
-		velocity = user_input.get_movement() * SPEED
+	velocity = user_input.get_movement() * SPEED
 		
 	move_and_slide()
 	

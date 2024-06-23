@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://bh7vkur2foe4f"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://bpwletc8bgacm"]
 
 [ext_resource type="Texture2D" uid="uid://d6euwehxtc88" path="res://art/VillagerFireDeath.png" id="1_fs81y"]
 [ext_resource type="Texture2D" uid="uid://bk4xxe0tk4mql" path="res://art/Villager01Idle.png" id="2_8nhk8"]
