@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://cjc0lvxvixsvq"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_0dssx"]
+
+[resource]
+script = ExtResource("1_0dssx")
+name = "Sigga"
+descendents = Array[ExtResource("1_0dssx")]([])
+intro = "Landing a place in the Dragonslain folklore is young Sigga, a girl who believed she could talk to animals. 
+The rest of the village already thought her to be crazy, but she reached new levels when they discovered she was going to attempt to talk to the dragon. Her best chance of getting its attention was shooting at it.
+"
+traitor = "Strange words were flowing out of Sigga’s mouth towards the dragon, and the villagers shouted words such as ‘crazy’. Sigga was sick of the names and so she shot the accusers. The dragon murmured to itself, “And they say I’m dangerous.”
+At least when the villagers killed her they had a good excuse."
+death = "Sigga desperately tried to get the dragon’s attention, sending arrow after arrow its way. And she got her wish, the black eyes pierced down at her and sent a response. In the form of a raging fireball. Crazy or not, Sigga was certainly remembered. "
+victory = "Firing arrows to get its attention seemed to work, as finally the dragon landed with a BOOM. Through the clouds of dust Sigga rushed, talking in a strange dialect to the beast. She thought it was rather rude that it wasn't responding to her. The villagers didn’t have the heart to tell her she had killed it. "
+forgivness = ""
+well = "Suddenly Sigga had an idea, recruit other animals to help her. Surely the frogs in the well would assist? She never found out as she fell to her death. The last thing she heard was the frogs say “Susan, here comes that crazy lady again.”"

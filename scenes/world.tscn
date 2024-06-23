@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cnwcws5tnwb13"]
+[gd_scene load_steps=33 format=3 uid="uid://cnwcws5tnwb13"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_dlhsa"]
 [ext_resource type="PackedScene" uid="uid://brr6c764i5con" path="res://scenes/dragon.tscn" id="2_5d7dx"]
@@ -11,11 +11,17 @@
 [ext_resource type="Resource" uid="uid://bqx5njpfv4xln" path="res://resources/villagers/atlas.tres" id="7_3rwy2"]
 [ext_resource type="Texture2D" uid="uid://kbdahkppsclt" path="res://art/Bush.png" id="7_7r5fn"]
 [ext_resource type="PackedScene" uid="uid://c8ohhlp0rbhlg" path="res://scenes/dialoge_overlay.tscn" id="7_576bi"]
+[ext_resource type="Resource" uid="uid://c257um8rfxmuq" path="res://resources/villagers/aelswyth.tres" id="7_gbfxa"]
+[ext_resource type="Resource" uid="uid://batfnyfhslmty" path="res://resources/villagers/gerwin.tres" id="9_0lj30"]
 [ext_resource type="Texture2D" uid="uid://chhcekfrdycdv" path="res://art/Tree01.png" id="9_3nmey"]
+[ext_resource type="Resource" uid="uid://c8nf5hbjx6emf" path="res://resources/villagers/hildegarde.tres" id="10_24eg6"]
 [ext_resource type="PackedScene" uid="uid://c5xu11wkab8ps" path="res://scenes/fountain.tscn" id="10_ouhlh"]
 [ext_resource type="PackedScene" uid="uid://b3d5vtiepdt02" path="res://scenes/house.tscn" id="11_5uba3"]
+[ext_resource type="Resource" uid="uid://bb3cldit25rt6" path="res://resources/villagers/leo.tres" id="11_27088"]
 [ext_resource type="PackedScene" uid="uid://ctegvdsp3jfxe" path="res://scenes/well.tscn" id="11_hsn62"]
+[ext_resource type="Resource" uid="uid://cjc0lvxvixsvq" path="res://resources/villagers/sigga.tres" id="12_bp47h"]
 [ext_resource type="PackedScene" uid="uid://c1o4itgvpgjsl" path="res://scenes/house_fletcher.tscn" id="12_hbfxu"]
+[ext_resource type="Resource" uid="uid://dwwjli4yi5kok" path="res://resources/villagers/wendela.tres" id="13_o6vc4"]
 [ext_resource type="AudioStream" uid="uid://bmloo7rmv022g" path="res://assets/music/folklore_battle_song_idk.wav" id="13_qjcc2"]
 [ext_resource type="PackedScene" uid="uid://dg67eotsldwtb" path="res://scenes/house_2.tscn" id="14_rolk8"]
 [ext_resource type="PackedScene" uid="uid://gj4hb6hw2whb" path="res://scenes/house_4.tscn" id="15_w0a4j"]
@@ -365,7 +371,7 @@ dragon_scene = ExtResource("2_5d7dx")
 player_scene = ExtResource("3_1skhm")
 villager_scene = ExtResource("3_wna6q")
 gravestone_scene = ExtResource("5_lkynr")
-character_list = Array[Resource("res://scripts/villager_data.gd")]([ExtResource("6_saqb6"), ExtResource("7_3rwy2")])
+character_list = Array[Resource("res://scripts/villager_data.gd")]([ExtResource("6_saqb6"), ExtResource("7_gbfxa"), ExtResource("7_3rwy2"), ExtResource("9_0lj30"), ExtResource("10_24eg6"), ExtResource("11_27088"), ExtResource("12_bp47h"), ExtResource("13_o6vc4")])
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ak2qq")

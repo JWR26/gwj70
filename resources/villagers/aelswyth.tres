@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://c257um8rfxmuq"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_cxkfm"]
+
+[resource]
+script = ExtResource("1_cxkfm")
+name = "Aelswyth"
+descendents = Array[ExtResource("1_cxkfm")]([])
+intro = "Surely you must know this part of the tale, Aelswyth the copper-haired, most popular Dragonslain to exist. Sought after by men and women alike, she was disgusted when she discovered the dragon wasn’t a fan of any Dragonslain. 
+Aelswyth didn’t care about avenging her bloodline, she wanted to avenge her popularity. 
+"
+traitor = "Everyone was focusing on the dragon and paying no attention to Aelswyth, a new and upsetting experience. She didn’t like this and so fired a few warning arrows, just for attention of course. This did not go down well with her ‘fan club’. "
+death = "The dragon was absolutely a hater and not a member of the Aelswyth fan club. To the beast she was just meat. Her final thought amidst the burning fire was that the red complimented her copper hair beautifully. "
+victory = "The dragon had underestimated the power of Aelswyth’s vanity and how little she wanted to look like a crispy spit roast. Every arrow that hit the dragon was laced with love, or self obsession but for the sake of a heartfelt ending let’s say love. In the end love beats hate, and the dragon was smitten down. Aelswyth comes on top. "
+forgivness = ""
+well = "The dragon’s endless attempts to mar her beautiful face was too much for Aelswyth. She went to hide in the well but was met with a long drop. A fatal one. Seems the well wasn’t a fan.  "

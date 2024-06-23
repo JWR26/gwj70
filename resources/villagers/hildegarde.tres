@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://c8nf5hbjx6emf"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_oy62f"]
+
+[resource]
+script = ExtResource("1_oy62f")
+name = "Hildegarde"
+descendents = Array[ExtResource("1_oy62f")]([])
+intro = "The nuisance dragon still persisted, a pain in the Dragonslain’s backside. But the next of Osric’s descendents to puff their chest was Hildegarde. 
+Mother to ten feisty children, known around Dragonnosh as Big Hilde. The woman was robust as all hell and ready to thoroughly scold the dragon with a maternal screech.
+"
+traitor = "Fueled by the pent-up maternal rage her ten children had inflicted over the years, Hildegarde completely lost her temper and took it out on her fellow villagers. 
+Triggered by their own memories of angry mothers, they lashed back and killed Hilde. 
+"
+death = "As all ten children peered from the window of their abode, the dragon finally wore down Big Hilde. 
+However, her legendary stubbornness meant she refused to turn to ash and instead turned to stone. It took the villagers a long time to move her. Classic Hilde!
+"
+victory = "Hildegarde pointed her bow at the dragon like she would point her finger at her children and yelled, “NO.” 
+Either by an arrow to the eye or the ferocity of a mother’s rebuke, the dragon was slain. Do not test Big Hilde, that’s the moral of this folktale. 
+"
+forgivness = ""
+well = "“Little children steer clear of the well, So deep and dark, if it echoes your yell.” 
+Big Hilde should have taken the rhyme more seriously as she tumbled to her grave.
+"

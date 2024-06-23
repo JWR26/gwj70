@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://bb3cldit25rt6"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_5bntn"]
+
+[resource]
+script = ExtResource("1_5bntn")
+name = "Leo"
+descendents = Array[ExtResource("1_5bntn")]([])
+intro = "The quickest folklore to exist ever follows Leo, the most generic, boring boy to walk the earth. The only thing that permits this tale is that he was a Dragonslain. And that he had nice hair. "
+traitor = "It came as an immense surprise when the Villagers saw Leo turn on them and fire. For the first time in their lives they saw he actually had shockingly beautiful hair, something actually interesting. They almost felt bad killing him. "
+death = "Somehow even Leo’s presence was emanating boredom, leeching energy from everyone. The dragon yawned and accidentally spewed fire simultaneously, reducing Leo to ash. Next."
+victory = "Leo killed the dragon. Huzza. The villagers yawned as Leo flicked his hair, sun glinting off the chocolate locks. As expected, the victory was anticlimactic. Leo had managed to make killing a dragon uninteresting. Can we erase this folklore from existence? Please? "
+forgivness = ""
+well = "Boring Leo ran to the boring well and made a boring jump into it. He intended to hide boringly but actually fell and died a boring death. "

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://batfnyfhslmty"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_yqpge"]
+
+[resource]
+script = ExtResource("1_yqpge")
+name = "Gerwin"
+descendents = Array[ExtResource("1_yqpge")]([])
+intro = "Continuing this tragic story we have Gerwin, an exiled thief and secret descendant of the Dragonslains. The village had long before cast him out, stealing the neighbour’s prized chamber pot was a step too far. 
+But as the infamous dragon flew down again, Gerwin saw a classic ‘redemption’ chance and snuck into the fight."
+traitor = "During the fight, Gerwin had a realisation. Why was he seeking the forgiveness of these people? They cast him out, the old bats. 
+You can imagine the look of surprise as he shot them all. Murder is like theft, right? And so the villagers stopped him once and for all. A thief until death."
+death = "Unfortunately in this tale, the dragon took inspiration from Gerwin, and so the thief was thieved from.In one breath, the dragon stole his life. An ironic end for our hooded scoundrel."
+victory = "With a stolen bow and stolen arrows, Gerwin pulled back his arm (one of few things truly his) and fired. A thief to his core, he then stole the dragon’s life. 
+He was welcomed back, and for the rest of his life he gathered people close to retell his tale (pickpocketing them in the process but we speak not of that.)"
+forgivness = ""
+well = "Needing a place to hide, Gerwin thought the well where he hid treasure would work. But the bag of gold he had thrown down didn’t have bones like him, nor a life. So the coins watched as he crumpled beside them, vaguely lifeless. "

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="VillagerData" load_steps=2 format=3 uid="uid://dwwjli4yi5kok"]
+
+[ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_a5tts"]
+
+[resource]
+script = ExtResource("1_a5tts")
+name = "Wendela"
+descendents = Array[ExtResource("1_a5tts")]([])
+intro = "This tale is one of Wendela Dragonslain, a woman who was a fighter extraordinaire. At 99 years old she had expertise in all offensive arts, training her whole life to reach peak ability in order to bring down the dragon who cursed her family’s existence. It was coming to the hour of her 100th birthday, which happened to be on the dragon’s appointment, and so she grabbed a bow. "
+traitor = "Put yourselves in the poorly-made shoes of the villagers and imagine the terror as a walking war machine turns the bow on you. Terrifying. Somehow the villagers took her down. Barely."
+death = "A minute to go before Wendela was officially 100, she received a geyser of flame to the face. Yet she stood grounded, firing arrows still as the flame melted her away. She may have perished at 99, but to this day the villagers swear they can hear her frenzied holler. "
+victory = "The old lady’s arms seemed sinewy, but they rippled with concealed muscle as years of training came into this final moment. The bow string almost snapped as an arrow flew, nearly slicing open the space time continuum. The dragon stood no chance. It careered into the ground just as Wendela turned 100. She extinguished the flames and made a wish. "
+forgivness = ""
+well = "In all her years of training, Wendela had filled her mind with knowledge of sharp things and reflexes. Not how deep wells are. A poor end for a warrior. "
