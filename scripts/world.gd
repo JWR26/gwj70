@@ -108,18 +108,17 @@ func _on_dragon_killed() -> void:
 	clean_scene()
 	progress_story(player.player_data.victory)
 
-
-func _on_player_killed(by: Entity) -> void:
+func _on_player_killed() -> void:
 	remove_child(dragon)
 	var gravestone_text: String = "Here lies %s. Slain by the scaled beast" % player.player_data.name
 	place_graveston(player.global_position, gravestone_text)
 	remove_child(player)
 	clean_scene()
-	if by is Dragon:
+	#if by is Dragon:
 		progress_story(player.player_data.death)
 		traitor_threshold = 2
-	else:
-		progress_story(player.player_data.traitor)
+	#else:
+		#progress_story(player.player_data.traitor)
 
 
 func add_villagers(house: VillageHouse) -> void:
