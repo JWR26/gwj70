@@ -19,6 +19,7 @@ var arrow_count: int = 6 :
 @onready var cooldown_timer: Timer = $ShootCooldown
 @onready var arrow_counter: ArrowCounter = $CanvasLayer/ArrowCounter
 @onready var status_message: StatusMessage = $StatusMessage
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 @export var user_input: UserInputComponent
 @export var arrow: PackedScene
@@ -39,10 +40,20 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.RIGHT * SPEED
 	else:
 		velocity = user_input.get_movement() * SPEED
+		
 	move_and_slide()
+	
+	if !is_shooting:
+		if velocity.length_squared() > 0.01:
+			sprite.play("run")
+			sprite.flip_h = velocity.x < 0
+		else:
+			sprite.play("idle")
 
+var is_shooting = false
 
 func shoot(at: Vector2 = Vector2.RIGHT) -> void:
+	
 	if not arrow_count > 0:
 		status_message.display_status("Need Arrows", Vector2.ZERO, 20, Color.DARK_RED)
 		return
@@ -56,6 +67,11 @@ func shoot(at: Vector2 = Vector2.RIGHT) -> void:
 	a.configure(self, global_position, dir)
 	$Container.add_child(a)
 	add_arrows(-1)
+	is_shooting = true
+	sprite.play("shoot")
+	sprite.flip_h = (get_global_mouse_position() - global_position).x < 0
+	await sprite.animation_finished
+	is_shooting = false
 
 func entity_died() -> void:
 	player_died.emit()

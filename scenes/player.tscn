@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_2kc2m"]
 [ext_resource type="Script" path="res://scripts/user_input.gd" id="3_7gif4"]
 [ext_resource type="Script" path="res://scripts/villager_data.gd" id="3_dad5b"]
-[ext_resource type="Texture2D" uid="uid://dknlrr67pfxr1" path="res://assets/art/player_sprite.png" id="4_kbkh2"]
+[ext_resource type="SpriteFrames" uid="uid://dq00430prh8rp" path="res://resources/playerAnimation.tres" id="4_acqnv"]
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="5_ali4m"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="6_jtxq0"]
 [ext_resource type="PackedScene" uid="uid://c276yu1h82qxs" path="res://scenes/arrow_counter.tscn" id="7_vqc37"]
@@ -22,7 +22,7 @@ forgivness = ""
 well = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgdie"]
-size = Vector2(16, 24)
+size = Vector2(16, 29)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("user_input", "health_component")]
 motion_mode = 1
@@ -33,10 +33,13 @@ player_data = SubResource("Resource_yih4t")
 health_component = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17.5)
 shape = SubResource("RectangleShape2D_lgdie")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("4_kbkh2")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("4_acqnv")
+animation = &"idle"
+autoplay = "idle"
 
 [node name="UserInputComponent" type="Node" parent="."]
 script = ExtResource("3_7gif4")
