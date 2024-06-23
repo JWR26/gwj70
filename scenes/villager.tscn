@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scripts/villager.gd" id="1_pagdl"]
 [ext_resource type="PackedScene" uid="uid://d0gdldxjqyc5b" path="res://scenes/quiver.tscn" id="2_l14ln"]
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_ow4a7"]
-[ext_resource type="Texture2D" uid="uid://d6euwehxtc88" path="res://assets/art/VillagerFireDeath.png" id="4_350gv"]
-[ext_resource type="Texture2D" uid="uid://bk4xxe0tk4mql" path="res://assets/art/Villager01Idle.png" id="4_tl2c1"]
+[ext_resource type="Texture2D" uid="uid://d6euwehxtc88" path="res://art/VillagerFireDeath.png" id="4_350gv"]
+[ext_resource type="Texture2D" uid="uid://bk4xxe0tk4mql" path="res://art/Villager01Idle.png" id="4_tl2c1"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="5_78rkw"]
-[ext_resource type="Texture2D" uid="uid://bd4ifp0xg0uel" path="res://assets/art/Villager01Run.png" id="6_hxh5t"]
-[ext_resource type="Texture2D" uid="uid://c04ku0sgpnosb" path="res://assets/art/Villager01Shoot.png" id="7_gm3c4"]
+[ext_resource type="Texture2D" uid="uid://bd4ifp0xg0uel" path="res://art/Villager01Run.png" id="6_hxh5t"]
+[ext_resource type="Texture2D" uid="uid://c04ku0sgpnosb" path="res://art/Villager01Shoot.png" id="7_gm3c4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y2q1p"]
 size = Vector2(32, 48)

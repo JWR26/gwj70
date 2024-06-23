@@ -16,6 +16,7 @@ var current_state: STATE = STATE.NONE
 
 @export var house_texture: Sprite2D
 @export var burned_texture: Sprite2D
+@export var fire_smoke: AnimatedSprite2D
 
 func _ready() -> void:
 	progress_state()
@@ -29,6 +30,9 @@ func burn() -> void:
 	burned_texture.show()
 	house_texture.hide()
 	print("Burning. House state: ", current_state)
+	fire_smoke.show()
+	fire_smoke.play("fire")
+
 
 func progress_state() -> void:
 	print("House state: ", current_state)
@@ -42,16 +46,19 @@ func progress_state() -> void:
 	if current_state == STATE.BUILT:
 		burned_texture.hide()
 		house_texture.show()
+		fire_smoke.hide()
 		return
 	
 	if current_state == STATE.ASHES:
 		burned_texture.show()
 		house_texture.hide()
+		fire_smoke.show()
+		fire_smoke.play("smoke")
 		return
 	
 	burned_texture.hide()
 	house_texture.hide()
-	
+	fire_smoke.hide()
 
 
 func get_spawn_points() -> Array:

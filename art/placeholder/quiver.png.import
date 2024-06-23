@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwrenfe28rpgx"
-path="res://.godot/imported/quiver.png-4f30d21a001d99b6550014a38932b2a9.ctex"
+path="res://.godot/imported/quiver.png-857b70dd35c37419c79b4fac5566a9c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/placeholder/quiver.png"
-dest_files=["res://.godot/imported/quiver.png-4f30d21a001d99b6550014a38932b2a9.ctex"]
+source_file="res://art/placeholder/quiver.png"
+dest_files=["res://.godot/imported/quiver.png-857b70dd35c37419c79b4fac5566a9c2.ctex"]
 
 [params]
 

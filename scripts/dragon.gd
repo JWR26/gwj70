@@ -10,7 +10,7 @@ enum  STATE {
 	}
 
 const SPEED: Array[float] = [
-	64.0,
+	128.0,
 	96.0,
 	128.0,
 	0.0,

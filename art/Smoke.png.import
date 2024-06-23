@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcbr7f020seus"
-path="res://.godot/imported/FletcherHut.png-8735c3e74baaee3729a39d15e87fe4bd.ctex"
+uid="uid://dsr6b0nt3h5h1"
+path="res://.godot/imported/Smoke.png-ebd1d841d2d07defc5d0b94de4b94224.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/FletcherHut.png"
-dest_files=["res://.godot/imported/FletcherHut.png-8735c3e74baaee3729a39d15e87fe4bd.ctex"]
+source_file="res://art/Smoke.png"
+dest_files=["res://.godot/imported/Smoke.png-ebd1d841d2d07defc5d0b94de4b94224.ctex"]
 
 [params]
 

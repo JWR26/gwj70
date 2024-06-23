@@ -4,7 +4,7 @@ extends Entity
 
 signal player_died()
 
-const SPEED: float = 64.0
+const SPEED: float = 128.0
 
 var arrows_per_minute: float = 48.0
 
@@ -24,8 +24,6 @@ var arrow_count: int = 6 :
 @export var arrow: PackedScene
 @export var player_data: VillagerData
 
-
-@export var ancestor: VillagerData
 
 func _ready() -> void:
 	arrow_counter.update_count(arrow_count)

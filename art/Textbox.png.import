@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcbr7f020seus"
-path="res://.godot/imported/FletcherHut.png-8735c3e74baaee3729a39d15e87fe4bd.ctex"
+uid="uid://bw2gkudfkrbet"
+path="res://.godot/imported/Textbox.png-97ddafc464b0fcae3124516e3621740c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/FletcherHut.png"
-dest_files=["res://.godot/imported/FletcherHut.png-8735c3e74baaee3729a39d15e87fe4bd.ctex"]
+source_file="res://art/Textbox.png"
+dest_files=["res://.godot/imported/Textbox.png-97ddafc464b0fcae3124516e3621740c.ctex"]
 
 [params]
 

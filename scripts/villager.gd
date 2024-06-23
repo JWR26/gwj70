@@ -2,7 +2,7 @@ class_name Villager
 
 extends Entity
 
-const SPEED: float = 48.0
+const SPEED: float = 96.0
 
 signal villager_killed_by_player
 

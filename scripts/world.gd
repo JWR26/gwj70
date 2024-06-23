@@ -14,6 +14,7 @@ const INTRO_TEXT: PackedStringArray = [
 	]
 
 const OSTRIC: VillagerData = preload("res://resources/villagers/ostric.tres")
+const MYRABETH: VillagerData = preload("res://resources/villagers/myrabeth.tres")
 
 var player: Player
 var dragon: Dragon
@@ -31,7 +32,12 @@ var recursing: bool = true
 @export var villager_scene: PackedScene
 @export var gravestone_scene: PackedScene
 
+@export var character_list: Array[VillagerData]
+
 func _ready() -> void:
+	character_list.shuffle()
+	character_list.push_back(MYRABETH)
+	character_list.push_back(OSTRIC)
 	start_story()
 	dialogue_overlay.auto_narrate = true
 	for text in INTRO_TEXT:
@@ -67,6 +73,9 @@ func advance_world_state() -> void:
 		if child is VillageHouse:
 			child.progress_state()
 			add_villagers(child)
+	
+	if character_list.is_empty():
+		get_tree().change_scene_to_file("res://scenes/ending.tscn")
 	
 	var next: VillagerData = player.player_data.get_descendent()
 	add_player(next)
@@ -114,11 +123,11 @@ func _on_player_killed() -> void:
 	place_graveston(player.global_position, gravestone_text)
 	remove_child(player)
 	clean_scene()
-	#if by is Dragon:
+	if traitor_threshold > 0:
 		progress_story(player.player_data.death)
-		traitor_threshold = 2
-	#else:
-		#progress_story(player.player_data.traitor)
+	else:
+		progress_story(player.player_data.traitor)
+	traitor_threshold = 2
 
 
 func add_villagers(house: VillageHouse) -> void:
@@ -139,7 +148,7 @@ func _on_villager_killed_by_player() -> void:
 
 func _on_dialogue_overlay_narative_finished() -> void:
 	if dragon_killed:
-		
+		get_tree().change_scene_to_file("res://scenes/ending.tscn")
 		return
 	if recursing:
 		print("no advance")
