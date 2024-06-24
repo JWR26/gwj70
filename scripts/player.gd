@@ -26,17 +26,24 @@ var arrow_count: int = 6 :
 @export var arrow: PackedScene
 @export var player_data: VillagerData
 
+var input_blocked := false
+
 
 func _ready() -> void:
 	arrow_counter.update_count(arrow_count)
+	sprite.play("idle")
 
 
 func _input(event: InputEvent) -> void:
+	if input_blocked:
+		return
 	if event.is_action_pressed("attack"):
 		shoot(get_global_mouse_position())
 
 
 func _physics_process(_delta: float) -> void:
+	if input_blocked:
+		return
 	velocity = user_input.get_movement() * SPEED
 		
 	move_and_slide()
@@ -88,3 +95,10 @@ func flee() -> void:
 
 func set_traitor() -> void:
 	is_traitor = true
+	
+func _on_dialogue_started() -> void:
+	input_blocked = true
+	
+func _on_dialogue_ended() -> void:
+	input_blocked = false
+

@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dk1bubtltrfbv" path="res://scenes/arrow.tscn" id="2_2kc2m"]
 [ext_resource type="Script" path="res://scripts/user_input.gd" id="3_7gif4"]
 [ext_resource type="Script" path="res://scripts/villager_data.gd" id="3_dad5b"]
-[ext_resource type="SpriteFrames" uid="uid://dq00430prh8rp" path="res://resources/playerAnimation.tres" id="4_acqnv"]
+[ext_resource type="SpriteFrames" uid="uid://4ppnic4o7k0f" path="res://resources/playerAnimation.tres" id="4_acqnv"]
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="5_ali4m"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="6_jtxq0"]
 [ext_resource type="PackedScene" uid="uid://c276yu1h82qxs" path="res://scenes/arrow_counter.tscn" id="7_vqc37"]

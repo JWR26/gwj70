@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/fireball.gd" id="1_k0gow"]
 [ext_resource type="Resource" uid="uid://b33io2cimsyfu" path="res://resources/arrow.tres" id="2_f3ceq"]
-[ext_resource type="Texture2D" uid="uid://b4n0uvgfdm0um" path="res://assets/art/placeholder/arrow.png" id="3_0nj0k"]
+[ext_resource type="Texture2D" uid="uid://b4n0uvgfdm0um" path="res://assets/art/arrow.png" id="3_0nj0k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dpgib"]
 radius = 6.08276

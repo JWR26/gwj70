@@ -2,6 +2,9 @@ class_name GameManager
 
 extends Node
 
+signal dialogue_started
+signal dialogue_ended
+
 const FOUNTAIN_MESSAGE: PackedStringArray = [
 	"To combat the fire’s searing touch, %s scooped up some water from the village fountain. Amazingly the water healed %s's wounds. The magic of hydration."
 	]
@@ -39,6 +42,7 @@ func _ready() -> void:
 	character_list.push_back(MYRABETH)
 	character_list.push_back(OSTRIC)
 	start_story()
+	dialogue_started.emit()
 	dialogue_overlay.auto_narrate = true
 	for text in INTRO_TEXT:
 		dialogue_overlay.show_story(text)
@@ -46,6 +50,7 @@ func _ready() -> void:
 		#await get_tree().create_timer(1.0).timeout
 	dialogue_overlay.hide_story()
 	dialogue_overlay.auto_narrate = false
+	dialogue_ended.emit()
 
 
 func add_dragon() -> void:
@@ -61,6 +66,8 @@ func add_player(data: VillagerData) -> void:
 	player.set_position(Vector2(640, 640))
 	player.player_died.connect(_on_player_killed)
 	player.player_data = data
+	dialogue_started.connect(player._on_dialogue_started)
+	dialogue_ended.connect(player._on_dialogue_ended)
 	add_child(player)
 	camera.reparent(player)
 	camera.focus_on(Vector2(0,32), Vector2(4,4))
