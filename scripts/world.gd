@@ -43,13 +43,14 @@ func _ready() -> void:
 	character_list.push_back(OSTRIC)
 	start_story()
 	dialogue_started.emit()
-	dialogue_overlay.auto_narrate = true
-	for text in INTRO_TEXT:
-		dialogue_overlay.show_story(text)
-		await get_tree().create_timer(text.length() * 0.055).timeout
-		#await get_tree().create_timer(1.0).timeout
-	dialogue_overlay.hide_story()
-	dialogue_overlay.auto_narrate = false
+	#dialogue_overlay.auto_narrate = true
+	#for text in INTRO_TEXT:
+		#dialogue_overlay.show_story(text)
+		#await dialogue_overlay.narative_finished
+		##await get_tree().create_timer(1.0).timeout
+	#dialogue_overlay.hide_story()
+	#dialogue_overlay.auto_narrate = false
+	dialogue_overlay.narrate_story(INTRO_TEXT)
 	dialogue_ended.emit()
 
 

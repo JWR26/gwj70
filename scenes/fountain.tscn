@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c5xu11wkab8ps"]
 
 [ext_resource type="Script" path="res://scripts/fountain.gd" id="1_iexnk"]
-[ext_resource type="Texture2D" uid="uid://c6uo0ftakct4g" path="res://assets/art/Fountain01.png" id="2_alt7n"]
-[ext_resource type="Texture2D" uid="uid://ci48r6ryd4dry" path="res://assets/art/Fountain02.png" id="3_pph66"]
+[ext_resource type="Texture2D" uid="uid://c6uo0ftakct4g" path="res://art/Fountain01.png" id="2_alt7n"]
+[ext_resource type="Texture2D" uid="uid://ci48r6ryd4dry" path="res://art/Fountain02.png" id="3_pph66"]
 [ext_resource type="LabelSettings" uid="uid://detof8xguxgri" path="res://resources/narrative_label.tres" id="4_3o6uv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_loho5"]

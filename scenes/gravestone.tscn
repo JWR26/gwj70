@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://cd5hwitph1mjj"]
 
 [ext_resource type="Script" path="res://scripts/gravestone.gd" id="1_8627h"]
-[ext_resource type="Texture2D" uid="uid://e7aqpcs6x157" path="res://assets/art/Grave.png" id="2_7251m"]
+[ext_resource type="Texture2D" uid="uid://e7aqpcs6x157" path="res://art/Grave.png" id="2_7251m"]
 [ext_resource type="LabelSettings" uid="uid://detof8xguxgri" path="res://resources/narrative_label.tres" id="3_4fex4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jfk5"]
