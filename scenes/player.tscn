@@ -17,12 +17,13 @@
 script = ExtResource("3_dad5b")
 name = "Ostric"
 descendents = Array[ExtResource("3_dad5b")]([])
-intro = ""
-traitor = ""
-death = ""
-victory = ""
-forgivness = ""
-well = ""
+intro = Array[Resource("res://scripts/narrative_event.gd")]([])
+declared_traitor = Array[Resource("res://scripts/narrative_event.gd")]([])
+traitor_death = Array[Resource("res://scripts/narrative_event.gd")]([])
+death = Array[Resource("res://scripts/narrative_event.gd")]([])
+victory = Array[Resource("res://scripts/narrative_event.gd")]([])
+forgivness = Array[Resource("res://scripts/narrative_event.gd")]([])
+well = Array[Resource("res://scripts/narrative_event.gd")]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lgdie"]
 size = Vector2(16, 29)

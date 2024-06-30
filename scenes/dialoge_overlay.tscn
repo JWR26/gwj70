@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8ohhlp0rbhlg"]
+[gd_scene load_steps=13 format=3 uid="uid://c8ohhlp0rbhlg"]
 
 [ext_resource type="Script" path="res://scripts/dialogue_overlay.gd" id="1_f2ag4"]
 [ext_resource type="StyleBox" uid="uid://cfhi7o81afkgt" path="res://resources/dialoge_box_sprite.tres" id="2_8qpqh"]
@@ -14,6 +14,8 @@ shadow_size = 0
 font = ExtResource("4_miwkt")
 font_color = Color(0, 0, 0, 1)
 shadow_size = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8lu62"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_mcl58"]
 font = ExtResource("4_miwkt")
@@ -50,7 +52,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("StoryMessage/Label2:modulate")
+tracks/2/path = NodePath("StoryMessage/Prompt:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -107,7 +109,7 @@ loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("StoryMessage/Label2:modulate")
+tracks/0/path = NodePath("StoryMessage/Prompt:modulate")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -206,7 +208,7 @@ autowrap_mode = 2
 visible_characters = 0
 visible_ratio = 4.96705e-08
 
-[node name="Label2" type="Label" parent="StoryMessage"]
+[node name="Prompt" type="Label" parent="StoryMessage"]
 layout_mode = 2
 size_flags_vertical = 8
 text = "[SPACE]"
@@ -228,10 +230,9 @@ offset_right = 208.0
 offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_styles/panel = ExtResource("2_8qpqh")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_8lu62")
 
 [node name="Label" type="Label" parent="IngameMessage"]
-modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 0
@@ -245,3 +246,10 @@ autowrap_mode = 2
 libraries = {
 "": SubResource("AnimationLibrary_cj2ij")
 }
+
+[node name="NarrativeAudioPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="EventAudioPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="finished" from="NarrativeAudioPlayer" to="." method="_on_narrative_audio_player_finished"]
+[connection signal="finished" from="EventAudioPlayer" to="." method="_on_event_audio_player_finished"]

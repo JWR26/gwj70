@@ -8,14 +8,10 @@
 script = ExtResource("1_wa3nc")
 name = "Myrabeth"
 descendents = Array[ExtResource("1_wa3nc")]([ExtResource("1_y6l6q"), ExtResource("2_6f44a")])
-intro = "This is a tale of a lady called Myrabeth, descendant of Osric the Dragonslain. With a heart of zeal she set out to avenge  and slay the monster who burnt him to a crisp.
-Myrabeth returned to the cursed village on the annual day of the Dragonnosh barbecue. Myrabeth primed her bow and hollered, “For Osric!”"
-traitor = "Perhaps Myrabeth’s rage had taken over her mind as she turned on the villagers around her. Dropping like flies they went, taken down by their own friend. Not cool. "
-death = "The dragon's onyx eyes locked onto Myrabeth.  
-“Ahh.” It growled, “Osric’s blood. Let’s make Dragonslain a family name shall we.”
-Within a second Myrabeth was roast meat.
-And so Dragonslain did become a family name, as you will see. "
-victory = "The vengeful fury coursed through Myrabeth, imbuing her arrows with strength. THUD. Into the dragon's heart an arrow found its mark.
-The villagers forever told the story of Myrabeth the vengeful and how her magic arrows ceased the dragon breath. They did also question if she was a witch and considered burning at the stake. But they’d had enough fire for a century."
-forgivness = ""
-well = "The fear of the dragon was so overwhelming that Myrabeth went to hide in a well. She  must have forgotten that wells usually contain a sheer drop. Death was slow and painful. Even the dragon was embarrassed.”"
+intro = Array[Resource("res://scripts/narrative_event.gd")]([])
+traitor = Array[Resource("res://scripts/narrative_event.gd")]([])
+traitor_death = Array[Resource("res://scripts/narrative_event.gd")]([])
+death = Array[Resource("res://scripts/narrative_event.gd")]([])
+victory = Array[Resource("res://scripts/narrative_event.gd")]([])
+forgivness = Array[Resource("res://scripts/narrative_event.gd")]([])
+well = Array[Resource("res://scripts/narrative_event.gd")]([])

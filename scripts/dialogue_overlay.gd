@@ -1,97 +1,58 @@
 class_name DialogueOverlay
-
+## A class for displaying onscreen dialogue acompanied by audio. The Dialogue Overlay consists of two main components a story narration overlay and an event narration.
 extends CanvasLayer
 
-
+## Emitted when the current narrative event has finished
 signal narative_finished
+## Scroll animation has finished. Only used internally to sequence the dialogue overlay
+signal scroll_shown
 
-signal story_text_updated
+## Contains the most recent narrative event in the form of an array of NarativeEvents
+var current_event: Array[NarrativeEvent] = []
+## Current index of the narrative to be displayed
+var current_index: int = 0
+## True while a story narration is in progress
+var is_narrating: bool = false
 
-var auto_narrate: bool = true
-var narative_displayed: bool = false
-
+## Reference to the event panel
 @onready var ingame_message: PanelContainer = $IngameMessage
-@onready var message_label: Label = $IngameMessage/Label
+## Reference to the event label
+@onready var ingame_message_label: Label = $IngameMessage/Label
+## Reference to the narration label
 @onready var story_text: Label = $StoryMessage/Label
+## Reference to the narration scroll panel background
 @onready var story_message: PanelContainer = $StoryMessage
 
 
 func _input(event: InputEvent) -> void:
-	if not narative_displayed:
+	# only process input when a story event is in progress
+	if not is_narrating:
+		print("Dialogue overaly does not process input")
 		return
 	
-	if auto_narrate:
-		return
-	
-	if event.is_action_pressed("ui_select"):
-		hide_story()
+	if event.is_action_pressed("interact"):
+		progress_narration()
 
-
-func show_ingame_message(message: String) -> void:
-	message_label.set_text(message)
-	var tween: Tween = get_tree().create_tween()
-	tween.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(ingame_message, "modulate", Color.WHITE, 0.2)
-	tween.tween_property(message_label, "modulate", Color.WHITE, 0.25).set_delay(0.15)
-	tween.tween_property(ingame_message, "modulate", Color.TRANSPARENT, 0.2).set_delay(4)
-	tween.tween_property(message_label, "modulate", Color.TRANSPARENT, 0.25).set_delay(4.1)
-
-
-func show_story(narative: String) -> void:
-	ingame_message.visible = false
-	$StoryMessage/Label2.visible = not auto_narrate
+## Triggers a narrative sequence.
+func narrate_story(story: Array[NarrativeEvent]) -> void:
+	print("narrating story")
+	is_narrating = true
+	current_event = story
+	current_index = 0
+	# story cuts an event short
+	$EventAudioPlayer.stop()
+	ingame_message.modulate = Color.TRANSPARENT
 	
-	story_message.modulate = Color.TRANSPARENT
-	story_message.custom_minimum_size = Vector2(40, 160)
-	story_text.modulate = Color.TRANSPARENT
-	story_text.visible_ratio = 0.0
-	
-	story_text.set_text(narative)
-	
-	var tween: Tween = get_tree().create_tween()
-	tween.set_parallel()
-	tween.tween_property(story_message, "modulate", Color.WHITE, 0.3).set_delay(0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(story_message, "custom_minimum_size", Vector2(740, 160), 0.5).set_delay(0.8).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(story_text, "modulate", Color.WHITE, 0.8).set_delay(1.2).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(story_text, "visible_ratio", 1.0, 0.1).set_delay(1.0).set_trans(Tween.TRANS_LINEAR)
-	
-	
-	# old code
-	#if narative_displayed:
-		#print("updating story")
-		#$AnimationPlayer.play("hide_story_text")
-		#await $AnimationPlayer.animation_finished
-		#story_text.set_text(narative)
-		#$AnimationPlayer.play_backwards("hide_story_text")
-		#return
-	#print("showing story")
-	#story_text.set_text(narative)
-	#$AnimationPlayer.play("show_story_message")
-	#narative_displayed = true
-	#if not auto_narrate:
-		#await $AnimationPlayer.animation_finished
-		#$AnimationPlayer.play("prompt_user")
-
-
-
-func narrate_story(story: PackedStringArray) -> void:
-	# check there is a voice line for each story line
-	
-	# first we shall animate the appearence of the scroll
+	# animate the appearence of the scroll then start the narration
 	show_scroll()
-	await get_tree().create_timer(1.5).timeout
-	
-	# update the text and play the voice line, the text updates when each voice line is finished
-	var i: int = 0
-	for s: String  in story:
-		update_story_text(s)
-		await story_text_updated
-	
-	hide_scroll()
-	narative_finished.emit()
+	await scroll_shown
+	update_story_text()
 
-
+## Hides the story narration scroll from the screen, stopping any audio currently playing.
 func hide_scroll() -> void:
+	# finishing dialogue before the audio ends cuts the audio short
+	$NarrativeAudioPlayer.stop()
+	is_narrating = false
 	var tween: Tween = get_tree().create_tween()
 	tween.set_parallel()
 	tween.tween_property(story_text, "modulate", Color.TRANSPARENT, 0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -99,7 +60,7 @@ func hide_scroll() -> void:
 	tween.tween_property(story_message, "custom_minimum_size", Vector2(40, 160), 0.5).set_delay(0.4).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(story_message, "modulate", Color.TRANSPARENT, 0.35).set_delay(0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 
-
+## Triggers the appearence of the scroll background
 func show_scroll() -> void:
 	story_text.modulate = Color.TRANSPARENT
 	story_text.visible_ratio = 0.0
@@ -111,28 +72,55 @@ func show_scroll() -> void:
 	tween.tween_property(story_message, "modulate", Color.WHITE, 0.3).set_delay(0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(story_message, "custom_minimum_size", Vector2(740, 160), 0.5).set_delay(0.3).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(story_text, "visible_ratio", 1.0, 0.1).set_delay(1.2).set_trans(Tween.TRANS_LINEAR)
+	await tween.finished
+	scroll_shown.emit()
 
-
-
-func update_story_text(str: String) -> void:
+## Updates the onscreen text display and triggers the start of the narration
+func update_story_text() -> void:
+	print("updating story")
 	var tween: Tween = get_tree().create_tween()
-	if story_text.text.length() > 0:
-		tween.tween_property(story_text, "modulate", Color.TRANSPARENT, 0.6).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
-		await get_tree().create_timer(0.6).timeout
-	story_text.set_text(str)
-	tween = get_tree().create_tween()
-	tween.tween_property(story_text, "modulate", Color.WHITE, 0.6).set_delay(0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	story_text.modulate = Color.TRANSPARENT
+	story_text.set_text(current_event[current_index].text)
+	tween.tween_property(story_text, "modulate", Color.WHITE, 0.25).set_delay(0.1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	# when the updated text appears we will start the audio
+	$NarrativeAudioPlayer.set_stream(current_event[current_index].audio)
+	await tween.finished
+	$NarrativeAudioPlayer.play()
+
+## Advances the narrative
+func progress_narration() -> void:
+	current_index += 1
+	# finish the narration
+	if not current_index < current_event.size():
+		hide_scroll()
+		narative_finished.emit()
+		return
 	
-	await get_tree().create_timer(3.0).timeout
-	story_text_updated.emit()
+	update_story_text()
+
+## If a story or event is not being played, play the given event. Shows text on the screen and starts the audio
+func narrate_event(event: NarrativeEvent) -> void:
+	if $NarrativeAudioPlayer.is_playing():
+		return
+	
+	if $EventAudioPlayer.is_playing():
+		return
+	
+	ingame_message.modulate = Color.TRANSPARENT
+	ingame_message_label.set_text(event.text)
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(ingame_message, "modulate", Color.WHITE, 1.0)
+	$EventAudioPlayer.set_stream(event.audio)
+	$EventAudioPlayer.play()
 
 
+func _on_narrative_audio_player_finished() -> void:
+	# Show the prompt to continue the narrative when the audio has finished playing
+	$AnimationPlayer.play("prompt_user")
 
-func hide_story() -> void:
-	print("hiding story")
-	$AnimationPlayer.play_backwards("show_story_message")
-	narative_displayed = false
-	await $AnimationPlayer.animation_finished
-	narative_finished.emit()
-	ingame_message.visible = true
 
+func _on_event_audio_player_finished() -> void:
+	# Hide the event message
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(ingame_message, "modulate", Color.TRANSPARENT, 1.0)

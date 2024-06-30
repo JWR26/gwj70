@@ -8,12 +8,13 @@ extends Resource
 
 @export var descendents: Array[VillagerData] = []
 
-@export_multiline var intro: String
-@export_multiline var traitor: String
-@export_multiline var death: String
-@export_multiline var victory: String
-@export_multiline var forgivness: String
-@export_multiline var well: String
+@export var intro: Array[NarrativeEvent]
+@export var declared_traitor: Array[NarrativeEvent]
+@export var traitor_death: Array[NarrativeEvent]
+@export var death: Array[NarrativeEvent]
+@export var victory: Array[NarrativeEvent]
+@export var forgivness: Array[NarrativeEvent]
+@export var well: Array[NarrativeEvent]
 
 
 func get_descendent() -> VillagerData:

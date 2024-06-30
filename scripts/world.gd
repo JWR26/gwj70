@@ -16,6 +16,8 @@ const INTRO_TEXT: PackedStringArray = [
 	"Our egg-stealer wanted fame, so he looked at the dragon and said, “Do one.”",
 	]
 
+const INTRO_AUDIO_FILES: Array[AudioStream] = []
+
 const OSTRIC: VillagerData = preload("res://resources/villagers/ostric.tres")
 const MYRABETH: VillagerData = preload("res://resources/villagers/myrabeth.tres")
 
@@ -45,12 +47,12 @@ func _ready() -> void:
 	dialogue_started.emit()
 	#dialogue_overlay.auto_narrate = true
 	#for text in INTRO_TEXT:
-		#dialogue_overlay.show_story(text)
+		#dialogue_overlay.narrate_story(text)
 		#await dialogue_overlay.narative_finished
 		##await get_tree().create_timer(1.0).timeout
 	#dialogue_overlay.hide_story()
 	#dialogue_overlay.auto_narrate = false
-	dialogue_overlay.narrate_story(INTRO_TEXT)
+	dialogue_overlay.narrate_story(OSTRIC.intro)
 	dialogue_ended.emit()
 
 
@@ -72,7 +74,7 @@ func add_player(data: VillagerData) -> void:
 	add_child(player)
 	camera.reparent(player)
 	camera.focus_on(Vector2(0,32), Vector2(4,4))
-	dialogue_overlay.show_story(player.player_data.intro)
+	dialogue_overlay.narrate_story(player.player_data.intro)
 	character_list.erase(data)
 
 
@@ -108,9 +110,9 @@ func clean_scene() -> void:
 			child.has_mourned = false
 
 
-func progress_story(text: String) -> void:
+func progress_story(story: Array[NarrativeEvent]) -> void:
 	clean_scene()
-	dialogue_overlay.show_story(text)
+	dialogue_overlay.narrate_story(story)
 
 
 func start_story() -> void:
@@ -154,8 +156,7 @@ func _on_villager_killed_by_player() -> void:
 	traitor_threshold -= 1
 	if traitor_threshold == 0:
 		player.set_traitor()
-		var traitor_text: String = "%s is attacking us! Death to the Traitor!" % player.player_data.name
-		dialogue_overlay.show_ingame_message(traitor_text)
+		dialogue_overlay.narrate_event(player.player_data.traitor.front())
 
 
 func _on_dialogue_overlay_narative_finished() -> void:

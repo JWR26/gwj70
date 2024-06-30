@@ -1,15 +1,47 @@
-[gd_resource type="Resource" script_class="VillagerData" load_steps=3 format=3 uid="uid://cwoytfbog7k2g"]
+[gd_resource type="Resource" script_class="VillagerData" load_steps=14 format=3 uid="uid://cwoytfbog7k2g"]
 
 [ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_0q4pn"]
 [ext_resource type="Resource" uid="uid://btugy2nttfv6p" path="res://resources/villagers/myrabeth.tres" id="1_bnju2"]
+[ext_resource type="AudioStream" uid="uid://i245b4pfwa4q" path="res://assets/narrative_audio/placeholder/osric_intro_01.mp3" id="2_yjfn4"]
+[ext_resource type="Script" path="res://scripts/narrative_event.gd" id="3_syidj"]
+[ext_resource type="AudioStream" uid="uid://b5gfb5onmv5ai" path="res://assets/narrative_audio/placeholder/osric_intro_02.mp3" id="4_81nih"]
+[ext_resource type="AudioStream" uid="uid://bp73cj2ue20oi" path="res://assets/narrative_audio/placeholder/osric_intro_03.mp3" id="5_jtdnf"]
+[ext_resource type="AudioStream" uid="uid://b18eodnt8acho" path="res://assets/narrative_audio/placeholder/osric_intro_04.mp3" id="6_6axx8"]
+[ext_resource type="AudioStream" uid="uid://dnhaa4whlirnx" path="res://assets/narrative_audio/placeholder/osric_traitor_01.mp3" id="8_xx70q"]
+
+[sub_resource type="Resource" id="Resource_haco1"]
+script = ExtResource("3_syidj")
+text = "Now enough of that high fantasy blather, this is a tale of greed’s consequence. And it concerns a man called Osric."
+audio = ExtResource("2_yjfn4")
+
+[sub_resource type="Resource" id="Resource_dqcx7"]
+script = ExtResource("3_syidj")
+text = "His tale begins as the young man is hurrying back on his little sprite legs to Dragonnosh Village after stealing a mystical dragon’s egg. Bad idea you say? You don’t need to tell me, as the dragon had followed his trail."
+audio = ExtResource("4_81nih")
+
+[sub_resource type="Resource" id="Resource_kcjx3"]
+script = ExtResource("3_syidj")
+text = "It gave Osric a chance to hand over the egg and it would flap away. But if refused, it would make charred human skewers for entertainment, returning annually to wreak havoc. Standard dragon behaviour."
+audio = ExtResource("5_jtdnf")
+
+[sub_resource type="Resource" id="Resource_7v5co"]
+script = ExtResource("3_syidj")
+text = "Our egg-stealer wanted fame, so he looked at the dragon and said, “Do one.”"
+audio = ExtResource("6_6axx8")
+
+[sub_resource type="Resource" id="Resource_hofua"]
+script = ExtResource("3_syidj")
+text = "Amidst the action, a stray arrow hit one of the villagers, killing them immediately. The villagers cried trator, death to Osric! Their fury decending upon him in the form of a dozen arrows."
+audio = ExtResource("8_xx70q")
 
 [resource]
 script = ExtResource("1_0q4pn")
 name = "Osric"
 descendents = Array[ExtResource("1_0q4pn")]([ExtResource("1_bnju2")])
-intro = ""
-traitor = "Amidst the action, a stray arrow hit one of the villagers, killing them immediately. The villagers cried trator, death to Osric! Their fury decending upon him in the form of a dozen arrows."
-death = "Osric saw the fire-bellied beast hover overhead and a pillar of flame shot down, reducing him to ash. And so concluded Osric’s tale, leaving him charred and the village forever under the dragon’s eye, awaking yearly to attack once more. A warning to check one's confidence against the weight of fame."
-victory = "Miraculously, a final arrow impaled the dragon. It’s roar shook the sky and then it fell, defeated by Osric. The Attack on Dragonnosh went down in history, recalled around fires not quite as hot as the dragon’s. But Osric’s tale stood above all, cementing himself as a local legend. The dragonslayer. The Egg-stealer. The stuff of legends."
-forgivness = ""
-well = "The fear of the dragon was so overwhelming that Ostric went to hide in a well. They must have forgot that wells usually contain a sheer drop. Death was slow and painful. Even the dragon was embarrassed."
+intro = Array[ExtResource("3_syidj")]([SubResource("Resource_haco1"), SubResource("Resource_dqcx7"), SubResource("Resource_kcjx3"), SubResource("Resource_7v5co")])
+declared_traitor = Array[ExtResource("3_syidj")]([])
+traitor_death = Array[ExtResource("3_syidj")]([SubResource("Resource_hofua")])
+death = Array[ExtResource("3_syidj")]([])
+victory = Array[ExtResource("3_syidj")]([])
+forgivness = Array[ExtResource("3_syidj")]([])
+well = Array[ExtResource("3_syidj")]([])
