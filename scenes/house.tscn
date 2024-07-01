@@ -1,11 +1,11 @@
 [gd_scene load_steps=27 format=3 uid="uid://b3d5vtiepdt02"]
 
 [ext_resource type="Script" path="res://scripts/house.gd" id="1_sp76u"]
-[ext_resource type="Texture2D" uid="uid://bwbfcgylqyq3d" path="res://art/House01.png" id="2_rale1"]
-[ext_resource type="Texture2D" uid="uid://cya6m1i8fwu0k" path="res://art/HouseBurnt02.png" id="2_reckq"]
+[ext_resource type="Texture2D" uid="uid://bwbfcgylqyq3d" path="res://assets/art/House01.png" id="2_rale1"]
+[ext_resource type="Texture2D" uid="uid://cya6m1i8fwu0k" path="res://assets/art/HouseBurnt02.png" id="2_reckq"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="2_wu3q8"]
-[ext_resource type="Texture2D" uid="uid://brh2jyb83dd4b" path="res://art/Fire.png" id="4_isxsf"]
-[ext_resource type="Texture2D" uid="uid://dsr6b0nt3h5h1" path="res://art/Smoke.png" id="5_gbsee"]
+[ext_resource type="Texture2D" uid="uid://brh2jyb83dd4b" path="res://assets/art/Fire.png" id="4_isxsf"]
+[ext_resource type="Texture2D" uid="uid://dsr6b0nt3h5h1" path="res://assets/art/Smoke.png" id="5_gbsee"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uvgw"]
 atlas = ExtResource("4_isxsf")

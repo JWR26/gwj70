@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/arrow_counter.gd" id="1_ekhsn"]
 [ext_resource type="Texture2D" uid="uid://d1m6iyl1gi4kd" path="res://assets/art/Arrows.png" id="2_dk8qg"]
 
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c08vb"]
 content_margin_left = 16.0
 content_margin_top = 16.0

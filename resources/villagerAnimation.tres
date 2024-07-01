@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://bpwletc8bgacm"]
 
-[ext_resource type="Texture2D" uid="uid://d6euwehxtc88" path="res://art/VillagerFireDeath.png" id="1_fs81y"]
-[ext_resource type="Texture2D" uid="uid://bk4xxe0tk4mql" path="res://art/Villager01Idle.png" id="2_8nhk8"]
-[ext_resource type="Texture2D" uid="uid://bd4ifp0xg0uel" path="res://art/Villager01Run.png" id="3_c78p1"]
-[ext_resource type="Texture2D" uid="uid://c04ku0sgpnosb" path="res://art/Villager01Shoot.png" id="4_nxvuo"]
+[ext_resource type="Texture2D" uid="uid://d6euwehxtc88" path="res://assets/art/VillagerFireDeath.png" id="1_fs81y"]
+[ext_resource type="Texture2D" uid="uid://bk4xxe0tk4mql" path="res://assets/art/Villager01Idle.png" id="2_8nhk8"]
+[ext_resource type="Texture2D" uid="uid://bd4ifp0xg0uel" path="res://assets/art/Villager01Run.png" id="3_c78p1"]
+[ext_resource type="Texture2D" uid="uid://c04ku0sgpnosb" path="res://assets/art/Villager01Shoot.png" id="4_nxvuo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3ave"]
 atlas = ExtResource("3_c78p1")

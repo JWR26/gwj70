@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/projectile_resource.gd" id="1_r065v"]
 [ext_resource type="Texture2D" uid="uid://dfukwe07pml7v" path="res://assets/art/Arrow03.png" id="2_v126t"]
 
+
 [resource]
 script = ExtResource("1_r065v")
 name = "Arrow"

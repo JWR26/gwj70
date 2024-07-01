@@ -14,7 +14,8 @@
     }
   },
   "recent_paths": [
-    "res://resources/villagers/"
+    "res://resources/villagers/",
+    "res://assets/villagers/"
   ],
   "table_functions": {
     "filter": [

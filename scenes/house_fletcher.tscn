@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://scripts/house_fletcher.gd" id="1_omrmm"]
 [ext_resource type="PackedScene" uid="uid://d0gdldxjqyc5b" path="res://scenes/quiver.tscn" id="2_us1an"]
-[ext_resource type="Texture2D" uid="uid://cya6m1i8fwu0k" path="res://art/HouseBurnt02.png" id="3_8qa2i"]
-[ext_resource type="Texture2D" uid="uid://bcbr7f020seus" path="res://art/FletcherHut.png" id="3_620b2"]
-[ext_resource type="Texture2D" uid="uid://brh2jyb83dd4b" path="res://art/Fire.png" id="5_vxxua"]
-[ext_resource type="Texture2D" uid="uid://dsr6b0nt3h5h1" path="res://art/Smoke.png" id="6_l84do"]
+[ext_resource type="Texture2D" uid="uid://cya6m1i8fwu0k" path="res://assets/art/HouseBurnt02.png" id="3_8qa2i"]
+[ext_resource type="Texture2D" uid="uid://bcbr7f020seus" path="res://assets/art/FletcherHut.png" id="3_620b2"]
+[ext_resource type="Texture2D" uid="uid://brh2jyb83dd4b" path="res://assets/art/Fire.png" id="5_vxxua"]
+[ext_resource type="Texture2D" uid="uid://dsr6b0nt3h5h1" path="res://assets/art/Smoke.png" id="6_l84do"]
+
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uvgw"]
 atlas = ExtResource("5_vxxua")

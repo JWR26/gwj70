@@ -3,11 +3,12 @@
 [ext_resource type="Script" path="res://scripts/dragon.gd" id="1_rp6r8"]
 [ext_resource type="PackedScene" uid="uid://dc7820fbps1di" path="res://scenes/fireball.tscn" id="2_26cet"]
 [ext_resource type="PackedScene" uid="uid://drq6g80wpfw6j" path="res://scenes/health_bar.tscn" id="4_euxno"]
-[ext_resource type="Texture2D" uid="uid://dbqhjfvge3sq4" path="res://art/DragonBackWing.png" id="5_1h8db"]
+[ext_resource type="Texture2D" uid="uid://dbqhjfvge3sq4" path="res://assets/art/DragonBackWing.png" id="5_1h8db"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="5_dix0n"]
-[ext_resource type="Texture2D" uid="uid://jxeeahwxjc2n" path="res://art/DragonBodyFlying.png" id="6_3tc7q"]
-[ext_resource type="Texture2D" uid="uid://cns3u8kibsv21" path="res://art/DragonFrontWing.png" id="7_via2j"]
+[ext_resource type="Texture2D" uid="uid://jxeeahwxjc2n" path="res://assets/art/DragonBodyFlying.png" id="6_3tc7q"]
+[ext_resource type="Texture2D" uid="uid://cns3u8kibsv21" path="res://assets/art/DragonFrontWing.png" id="7_via2j"]
 [ext_resource type="AudioStream" uid="uid://txqk1kfsgcqp" path="res://assets/sfx/Whoosh Fireball 001.wav" id="8_l2yev"]
+
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_37ste"]
 size = Vector2(83, 106)

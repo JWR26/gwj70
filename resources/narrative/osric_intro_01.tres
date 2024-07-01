@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="NarrativeEvent" load_steps=3 format=3 uid="uid://10npkmoqd6yu"]
+
+[ext_resource type="AudioStream" uid="uid://i245b4pfwa4q" path="res://assets/narrative_audio/placeholder/osric_intro_01.mp3" id="1_de5d2"]
+[ext_resource type="Script" path="res://scripts/narrative_event.gd" id="2_r3skp"]
+
+[resource]
+script = ExtResource("2_r3skp")
+text = "Now enough of that high fantasy blather, this is a tale of greed’s consequence. And it concerns a man called Osric."
+audio = ExtResource("1_de5d2")

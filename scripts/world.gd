@@ -44,16 +44,7 @@ func _ready() -> void:
 	character_list.push_back(MYRABETH)
 	character_list.push_back(OSTRIC)
 	start_story()
-	dialogue_started.emit()
-	#dialogue_overlay.auto_narrate = true
-	#for text in INTRO_TEXT:
-		#dialogue_overlay.narrate_story(text)
-		#await dialogue_overlay.narative_finished
-		##await get_tree().create_timer(1.0).timeout
-	#dialogue_overlay.hide_story()
-	#dialogue_overlay.auto_narrate = false
-	dialogue_overlay.narrate_story(OSTRIC.intro)
-	dialogue_ended.emit()
+	dialogue_overlay.narrate_story(OSTRIC.story_intro)
 
 
 func add_dragon() -> void:
@@ -74,7 +65,7 @@ func add_player(data: VillagerData) -> void:
 	add_child(player)
 	camera.reparent(player)
 	camera.focus_on(Vector2(0,32), Vector2(4,4))
-	dialogue_overlay.narrate_story(player.player_data.intro)
+	dialogue_overlay.narrate_story(player.player_data.story_intro)
 	character_list.erase(data)
 
 
@@ -112,6 +103,7 @@ func clean_scene() -> void:
 
 func progress_story(story: Array[NarrativeEvent]) -> void:
 	clean_scene()
+	dialogue_started.emit()
 	dialogue_overlay.narrate_story(story)
 
 
@@ -129,7 +121,7 @@ func _on_dragon_killed() -> void:
 	call_deferred("remove_child", player)
 	call_deferred("remove_child", dragon)
 	clean_scene()
-	progress_story(player.player_data.victory)
+	progress_story(player.player_data.story_victory)
 
 func _on_player_killed() -> void:
 	remove_child(dragon)
@@ -138,9 +130,9 @@ func _on_player_killed() -> void:
 	remove_child(player)
 	clean_scene()
 	if traitor_threshold > 0:
-		progress_story(player.player_data.death)
+		progress_story(player.player_data.story_death)
 	else:
-		progress_story(player.player_data.traitor)
+		progress_story(player.player_data.story_traitor_death)
 	traitor_threshold = 2
 
 
@@ -156,7 +148,7 @@ func _on_villager_killed_by_player() -> void:
 	traitor_threshold -= 1
 	if traitor_threshold == 0:
 		player.set_traitor()
-		dialogue_overlay.narrate_event(player.player_data.traitor.front())
+		dialogue_overlay.narrate_event(player.player_data.event_declared_traitor)
 
 
 func _on_dialogue_overlay_narative_finished() -> void:
@@ -173,6 +165,7 @@ func _on_dialogue_overlay_narative_finished() -> void:
 	recursing = true
 	print("advancing world state")
 	advance_world_state()
+	dialogue_ended.emit()
 	return
 
 
@@ -189,7 +182,7 @@ func _on_well_entered_well() -> void:
 	camera.reparent($Well)
 	print("pan to well")
 	camera.focus_on(Vector2(0, 32), Vector2(2,2))
-	progress_story(player.player_data.well)
+	progress_story(player.player_data.story_well)
 
 
 

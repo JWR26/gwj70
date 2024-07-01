@@ -1,47 +1,101 @@
-[gd_resource type="Resource" script_class="VillagerData" load_steps=14 format=3 uid="uid://cwoytfbog7k2g"]
+[gd_resource type="Resource" script_class="VillagerData" load_steps=32 format=3 uid="uid://cwoytfbog7k2g"]
 
 [ext_resource type="Script" path="res://scripts/villager_data.gd" id="1_0q4pn"]
 [ext_resource type="Resource" uid="uid://btugy2nttfv6p" path="res://resources/villagers/myrabeth.tres" id="1_bnju2"]
-[ext_resource type="AudioStream" uid="uid://i245b4pfwa4q" path="res://assets/narrative_audio/placeholder/osric_intro_01.mp3" id="2_yjfn4"]
+[ext_resource type="AudioStream" uid="uid://dr8ybb48n01xs" path="res://assets/narrative_audio/placeholder/placeholder_event.mp3" id="2_2fuv2"]
 [ext_resource type="Script" path="res://scripts/narrative_event.gd" id="3_syidj"]
+[ext_resource type="AudioStream" uid="uid://bolapweeecw8h" path="res://assets/narrative_audio/placeholder/osric_gravestone.mp3" id="4_1fiv1"]
 [ext_resource type="AudioStream" uid="uid://b5gfb5onmv5ai" path="res://assets/narrative_audio/placeholder/osric_intro_02.mp3" id="4_81nih"]
 [ext_resource type="AudioStream" uid="uid://bp73cj2ue20oi" path="res://assets/narrative_audio/placeholder/osric_intro_03.mp3" id="5_jtdnf"]
+[ext_resource type="AudioStream" uid="uid://t4oyc6b0ksj6" path="res://assets/narrative_audio/placeholder/placeholder_narrative.mp3" id="5_rhod8"]
 [ext_resource type="AudioStream" uid="uid://b18eodnt8acho" path="res://assets/narrative_audio/placeholder/osric_intro_04.mp3" id="6_6axx8"]
-[ext_resource type="AudioStream" uid="uid://dnhaa4whlirnx" path="res://assets/narrative_audio/placeholder/osric_traitor_01.mp3" id="8_xx70q"]
+[ext_resource type="AudioStream" uid="uid://cxxopj0j1qcrl" path="res://assets/narrative_audio/placeholder/osric_death_01.mp3" id="6_kpi7r"]
+[ext_resource type="Resource" uid="uid://10npkmoqd6yu" path="res://resources/narrative/osric_intro_01.tres" id="7_l410j"]
+[ext_resource type="AudioStream" uid="uid://heuxgd6gwlt1" path="res://assets/narrative_audio/placeholder/osric_death_03.mp3" id="8_mebce"]
+[ext_resource type="AudioStream" uid="uid://dvumot7pi3bha" path="res://assets/narrative_audio/placeholder/osric_traitor_death_01.mp3" id="12_72xq2"]
+[ext_resource type="AudioStream" uid="uid://i17m6lutrme7" path="res://assets/narrative_audio/placeholder/osric_death_02.mp3" id="12_mp5tl"]
+[ext_resource type="AudioStream" uid="uid://di5a7yk684uxq" path="res://assets/narrative_audio/placeholder/osric_traitor_death_02.mp3" id="13_urlyh"]
+[ext_resource type="AudioStream" uid="uid://c57ksph4nx3k2" path="res://assets/narrative_audio/placeholder/osric_well_01.mp3" id="16_2yilh"]
+[ext_resource type="AudioStream" uid="uid://bbdfgut4tc3hj" path="res://assets/narrative_audio/placeholder/osric_well_02.mp3" id="17_p47ny"]
 
-[sub_resource type="Resource" id="Resource_haco1"]
+[sub_resource type="Resource" id="Resource_xomdi"]
 script = ExtResource("3_syidj")
-text = "Now enough of that high fantasy blather, this is a tale of greed’s consequence. And it concerns a man called Osric."
-audio = ExtResource("2_yjfn4")
+text = "[Placeholder]"
+audio = ExtResource("2_2fuv2")
 
-[sub_resource type="Resource" id="Resource_dqcx7"]
+[sub_resource type="Resource" id="Resource_cb23w"]
+script = ExtResource("3_syidj")
+text = "Thinking how this all could have been avoided infuriates you… You feel energised."
+audio = ExtResource("4_1fiv1")
+
+[sub_resource type="Resource" id="Resource_y1pa8"]
+script = ExtResource("3_syidj")
+text = "Osric saw the fire-bellied beast hover overhead and a pillar of flame shot down, reducing him to ash. "
+audio = ExtResource("6_kpi7r")
+
+[sub_resource type="Resource" id="Resource_ig3yh"]
+script = ExtResource("3_syidj")
+text = "And so concluded Osric’s tale, leaving him charred and the village forever under the dragon’s eye, awaking yearly to attack once more."
+audio = ExtResource("12_mp5tl")
+
+[sub_resource type="Resource" id="Resource_ha14h"]
+script = ExtResource("3_syidj")
+text = "A warning to check one's confidence against the weight of fame."
+audio = ExtResource("8_mebce")
+
+[sub_resource type="Resource" id="Resource_08gjo"]
+script = ExtResource("3_syidj")
+text = "[Placeholder]"
+audio = ExtResource("5_rhod8")
+
+[sub_resource type="Resource" id="Resource_1jhxb"]
 script = ExtResource("3_syidj")
 text = "His tale begins as the young man is hurrying back on his little sprite legs to Dragonnosh Village after stealing a mystical dragon’s egg. Bad idea you say? You don’t need to tell me, as the dragon had followed his trail."
 audio = ExtResource("4_81nih")
 
-[sub_resource type="Resource" id="Resource_kcjx3"]
+[sub_resource type="Resource" id="Resource_3i0ud"]
 script = ExtResource("3_syidj")
-text = "It gave Osric a chance to hand over the egg and it would flap away. But if refused, it would make charred human skewers for entertainment, returning annually to wreak havoc. Standard dragon behaviour."
+text = "It gave Osric a chance to hand over the egg and it would flap away. But if refused, it would make charred human skewers for entertainment, returning annually to wreak havoc.vStandard dragon behaviour."
 audio = ExtResource("5_jtdnf")
 
-[sub_resource type="Resource" id="Resource_7v5co"]
+[sub_resource type="Resource" id="Resource_fm0hv"]
 script = ExtResource("3_syidj")
 text = "Our egg-stealer wanted fame, so he looked at the dragon and said, “Do one.”"
 audio = ExtResource("6_6axx8")
 
-[sub_resource type="Resource" id="Resource_hofua"]
+[sub_resource type="Resource" id="Resource_to6or"]
 script = ExtResource("3_syidj")
-text = "Amidst the action, a stray arrow hit one of the villagers, killing them immediately. The villagers cried trator, death to Osric! Their fury decending upon him in the form of a dozen arrows."
-audio = ExtResource("8_xx70q")
+text = "It seems the hero has just turned on the village. I’m confused. "
+audio = ExtResource("12_72xq2")
+
+[sub_resource type="Resource" id="Resource_jmdfb"]
+script = ExtResource("3_syidj")
+text = "And so concluded Osric’s tale, leaving him charred and the village forever under the dragon’s eye, awaking yearly to attack once more."
+audio = ExtResource("13_urlyh")
+
+[sub_resource type="Resource" id="Resource_vopit"]
+script = ExtResource("3_syidj")
+text = ""
+
+[sub_resource type="Resource" id="Resource_b1uab"]
+script = ExtResource("3_syidj")
+text = "The idea of fighting a fully-grown dragon began to seem ridiculous, so Osric went to hide in a well."
+audio = ExtResource("16_2yilh")
+
+[sub_resource type="Resource" id="Resource_3ychp"]
+script = ExtResource("3_syidj")
+text = "It took a few seconds to realise he was falling and then he broke all his bones as he hit the bottom."
+audio = ExtResource("17_p47ny")
 
 [resource]
 script = ExtResource("1_0q4pn")
 name = "Osric"
 descendents = Array[ExtResource("1_0q4pn")]([ExtResource("1_bnju2")])
-intro = Array[ExtResource("3_syidj")]([SubResource("Resource_haco1"), SubResource("Resource_dqcx7"), SubResource("Resource_kcjx3"), SubResource("Resource_7v5co")])
-declared_traitor = Array[ExtResource("3_syidj")]([])
-traitor_death = Array[ExtResource("3_syidj")]([SubResource("Resource_hofua")])
-death = Array[ExtResource("3_syidj")]([])
-victory = Array[ExtResource("3_syidj")]([])
-forgivness = Array[ExtResource("3_syidj")]([])
-well = Array[ExtResource("3_syidj")]([])
+story_intro = Array[ExtResource("3_syidj")]([ExtResource("7_l410j"), SubResource("Resource_1jhxb"), SubResource("Resource_3i0ud"), SubResource("Resource_fm0hv")])
+story_traitor_death = Array[ExtResource("3_syidj")]([SubResource("Resource_to6or"), SubResource("Resource_jmdfb")])
+story_death = Array[ExtResource("3_syidj")]([SubResource("Resource_y1pa8"), SubResource("Resource_ig3yh"), SubResource("Resource_ha14h")])
+story_victory = Array[ExtResource("3_syidj")]([SubResource("Resource_vopit")])
+story_forgivness = Array[ExtResource("3_syidj")]([SubResource("Resource_08gjo")])
+story_well = Array[ExtResource("3_syidj")]([SubResource("Resource_b1uab"), SubResource("Resource_3ychp")])
+event_declared_traitor = SubResource("Resource_xomdi")
+event_gravestone = SubResource("Resource_cb23w")

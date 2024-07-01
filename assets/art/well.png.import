@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1th8d856f1e"
-path="res://.godot/imported/well.png-8403ddb7391b0b0167fab71c5d5aab37.ctex"
+uid="uid://btxjuspqo17kc"
+path="res://.godot/imported/Well.png-02979ba812eca2eeeea2b697897ae7c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/well.png"
-dest_files=["res://.godot/imported/well.png-8403ddb7391b0b0167fab71c5d5aab37.ctex"]
+source_file="res://assets/art/Well.png"
+dest_files=["res://.godot/imported/Well.png-02979ba812eca2eeeea2b697897ae7c1.ctex"]
 
 [params]
 
